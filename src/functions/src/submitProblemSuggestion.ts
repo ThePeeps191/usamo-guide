@@ -10,12 +10,10 @@ import {
 } from '../../models/problem';
 
 const problemSuggestionReviewers = {
-  general: [],
-  bronze: [],
-  silver: [],
-  gold: [],
-  plat: [],
-  adv: [],
+  foundations: [],
+  intermediate: [],
+  advanced: [],
+  usamo: [],
 };
 
 if (admin.apps.length === 0) {
@@ -100,7 +98,7 @@ const submitProblemSuggestion = functions.https.onCall(
       (source === 'other'
         ? `**Warning: The source of this problem is currently set to \`other\`. You must correct the problem source and the solution before merging.**\n`
         : '') +
-      `*This PR was automatically generated from a user-submitted problem suggestion on the USACO guide.*`;
+      `*This PR was automatically generated from a user-submitted problem suggestion on the USAMO Guide.*`;
     const key = functions.config().problemsuggestion.issueapikey;
     const githubAPI = axios.create({
       baseURL: 'https://api.github.com',
@@ -111,7 +109,7 @@ const submitProblemSuggestion = functions.https.onCall(
     });
 
     const masterRefsReq = await githubAPI.get(
-      '/repos/cpinitiative/usaco-guide/git/refs/heads'
+      '/repos/cpinitiative/usamo-guide/git/refs/heads'
     );
     const masterRef = masterRefsReq.data.find(
       r => r.ref == 'refs/heads/master'
@@ -124,7 +122,7 @@ const submitProblemSuggestion = functions.https.onCall(
     for (increment; increment < 5; increment++) {
       try {
         await githubAPI.get(
-          `/repos/cpinitiative/usaco-guide/branches/${
+          `/repos/cpinitiative/usamo-guide/branches/${
             branchNameBase + (increment === 0 ? '' : '-' + increment)
           }`
         );
@@ -143,13 +141,13 @@ const submitProblemSuggestion = functions.https.onCall(
     }
     const branchName =
       branchNameBase + (increment === 0 ? '' : '-' + increment);
-    await githubAPI.post('/repos/cpinitiative/usaco-guide/git/refs', {
+    await githubAPI.post('/repos/cpinitiative/usamo-guide/git/refs', {
       ref: 'refs/heads/' + branchName,
       sha: masterHash,
     });
 
     const oldFileDataReq = await githubAPI.get(
-      `/repos/cpinitiative/usaco-guide/contents/content/${filePath.replace(
+      `/repos/cpinitiative/usamo-guide/contents/content/${filePath.replace(
         /\.mdx$/,
         '.problems.json'
       )}?ref=${branchName}`
@@ -194,7 +192,7 @@ const submitProblemSuggestion = functions.https.onCall(
     });
 
     await githubAPI.put(
-      `/repos/cpinitiative/usaco-guide/contents/content/${filePath.replace(
+      `/repos/cpinitiative/usamo-guide/contents/content/${filePath.replace(
         /\.mdx$/,
         '.problems.json'
       )}`,
@@ -207,7 +205,7 @@ const submitProblemSuggestion = functions.https.onCall(
     );
 
     const createdPullRequestReq = await githubAPI.post(
-      '/repos/cpinitiative/usaco-guide/pulls',
+      '/repos/cpinitiative/usamo-guide/pulls',
       {
         head: branchName,
         base: 'master',
@@ -220,7 +218,7 @@ const submitProblemSuggestion = functions.https.onCall(
     const useProblemSuggestionReviewers = false;
     if (useProblemSuggestionReviewers) {
       const reviewersReq = await githubAPI.get(
-        `/repos/cpinitiative/usaco-guide/pulls/${createdPullRequestReq.data.number}/requested_reviewers`
+        `/repos/cpinitiative/usamo-guide/pulls/${createdPullRequestReq.data.number}/requested_reviewers`
       );
       const reviewersToRemove = reviewersReq.data.users
         .map(user => user.login)
@@ -229,7 +227,7 @@ const submitProblemSuggestion = functions.https.onCall(
         .map(user => user.login)
         .filter(user => problemSuggestionReviewers[section].includes(user));
       await githubAPI.delete(
-        `/repos/cpinitiative/usaco-guide/pulls/${createdPullRequestReq.data.number}/requested_reviewers`,
+        `/repos/cpinitiative/usamo-guide/pulls/${createdPullRequestReq.data.number}/requested_reviewers`,
         {
           data: {
             reviewers: reviewersToRemove,
@@ -243,7 +241,7 @@ const submitProblemSuggestion = functions.https.onCall(
         ).length > 0
       ) {
         await githubAPI.post(
-          `/repos/cpinitiative/usaco-guide/pulls/${createdPullRequestReq.data.number}/requested_reviewers`,
+          `/repos/cpinitiative/usamo-guide/pulls/${createdPullRequestReq.data.number}/requested_reviewers`,
           {
             reviewers: problemSuggestionReviewers[section].filter(
               u => !keptReviewers.includes(u)
@@ -255,7 +253,7 @@ const submitProblemSuggestion = functions.https.onCall(
 
     // post to /issues/ because github treats all PRs as issues, so the shared features between them (such as labels) use issue api
     await githubAPI.post(
-      `/repos/cpinitiative/usaco-guide/issues/${createdPullRequestReq.data.number}/labels`,
+      `/repos/cpinitiative/usamo-guide/issues/${createdPullRequestReq.data.number}/labels`,
       ['Problem Suggestion']
     );
 

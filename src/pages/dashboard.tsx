@@ -12,7 +12,6 @@ import Card from '../components/Dashboard/DashboardCard';
 import DashboardProgress from '../components/Dashboard/DashboardProgress';
 import WelcomeBackBanner from '../components/Dashboard/WelcomeBackBanner';
 import Layout from '../components/layout';
-import divToProbs from '../components/markdown/ProblemsList/DivisionList/div_to_probs.json';
 import SEO from '../components/seo';
 import TopNavigationBar from '../components/TopNavigationBar/TopNavigationBar';
 import { useSignIn } from '../context/SignInContext';
@@ -59,23 +58,6 @@ export default function DashboardPage(props: PageProps) {
       return acc;
     }, {});
 
-    // 2. problems in USACO monthly table
-    const divisions = ['Bronze', 'Silver', 'Gold', 'Platinum'];
-    for (const division of divisions) {
-      for (const probInfo of divToProbs[division]) {
-        const id = `usaco-${probInfo[0]}`;
-        if (!(id in res)) {
-          res[id] = {
-            label: `${division}: ${probInfo[2]}`,
-            modules: [
-              {
-                url: `/general/usaco-monthlies/#problem-${id}`,
-              },
-            ],
-          };
-        }
-      }
-    }
     return res;
   }, [problems]);
   const lastViewedModuleID = useLastViewedModule();
@@ -131,7 +113,7 @@ export default function DashboardPage(props: PageProps) {
   }, [userProgressOnProblems, showIgnored]);
 
   const lastViewedSection =
-    moduleIDToSectionMap[lastViewedModuleID] || 'general';
+    moduleIDToSectionMap[lastViewedModuleID] || 'foundations';
   const moduleProgressIDs = Object.keys(moduleIDToName).filter(
     x => moduleIDToSectionMap[x] === lastViewedSection
   );

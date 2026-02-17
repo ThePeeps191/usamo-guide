@@ -52,84 +52,67 @@ export default function TopNavigationBar({
 
   const resources = [
     {
-      name: 'USACO Forum',
-      description: 'An unofficial Q&A forum for USACO contestants.',
-      href: 'https://forum.usaco.guide/',
+      name: 'AoPS Community',
+      description: 'Math contest discussions and Q&A on Art of Problem Solving.',
+      href: 'https://artofproblemsolving.com/community',
       icon: ChatAlt2Icon,
     },
     {
-      name: 'USACO IDE',
-      description:
-        'A realtime collaborative online IDE designed for competitive programming and USACO.',
-      href: 'https://ide.usaco.guide/',
+      name: 'AoPS Wiki',
+      description: 'Official statements and solutions for AMC/AIME/USAMO.',
+      href: 'https://artofproblemsolving.com/wiki/index.php/Main_Page',
       icon: TerminalIcon,
     },
     {
-      name: 'Classes',
-      description:
-        'Learn USACO through high-quality classes with material developed by past USACO Finalists',
-      href: 'https://joincpi.org/classes',
+      name: 'MAA Competitions',
+      description: 'Official contest pages and information for AMC/AIME/USAMO.',
+      href: 'https://www.maa.org/math-competitions',
       icon: AcademicCapIcon,
     },
     {
-      name: 'Contests',
-      description:
-        'Participate in high-quality programming contests targeted towards pre-college students!',
-      href: 'https://joincpi.org/contests',
+      name: 'Past AMC/AIME',
+      description: 'Official problem archives and scoring details.',
+      href: 'https://maa.org/math-competitions/amc-8',
       icon: ChartBarIcon,
     },
     {
-      name: 'Clubs',
-      description:
-        'Get access to a curriculum tailored for competitive programming clubs.',
-      href: 'https://joincpi.org/clubs',
+      name: 'Study Groups',
+      description: 'Collaborate with peers using the USAMO Guide LMS.',
+      href: '/groups',
       icon: UserGroupIcon,
     },
     {
       name: 'Workshops',
-      description:
-        'Access workshops providing you everything you need to know about USACO.',
-      href: 'https://joincpi.org/workshop',
+      description: 'Workshops on proof techniques and contest strategies.',
+      href: '/groups',
       icon: PresentationChartLineIcon,
     },
   ];
 
   const solutions = [
     {
-      name: 'General',
-      href: '/general',
+      name: 'Foundations',
+      href: '/foundations',
       icon: BookmarkIcon,
-      key: 'general',
+      key: 'foundations',
     },
     {
-      name: 'Bronze',
-      href: '/bronze',
+      name: 'Intermediate',
+      href: '/intermediate',
       icon: BookmarkIcon,
-      key: 'bronze',
-    },
-    {
-      name: 'Silver',
-      href: '/silver',
-      icon: BookmarkIcon,
-      key: 'silver',
-    },
-    {
-      name: 'Gold',
-      href: '/gold',
-      icon: BookmarkIcon,
-      key: 'gold',
-    },
-    {
-      name: 'Platinum',
-      href: '/plat',
-      icon: BookmarkIcon,
-      key: 'plat',
+      key: 'intermediate',
     },
     {
       name: 'Advanced',
-      href: '/adv',
+      href: '/advanced',
       icon: BookmarkIcon,
-      key: 'adv',
+      key: 'advanced',
+    },
+    {
+      name: 'USAMO Prep',
+      href: '/usamo',
+      icon: BookmarkIcon,
+      key: 'usamo',
     },
   ];
   return (
@@ -137,9 +120,9 @@ export default function TopNavigationBar({
       {!hidePromoBar && (
         <>
           <Banner
-            text="Our next semester of live classes starts this weekend!"
-            action="Register here"
-            link="https://joincpi.org/classes"
+            text="Join the USAMO Guide study cohort. Weekly problem sessions are live."
+            action="Learn more"
+            link="/groups"
           />
         </>
       )}
@@ -216,7 +199,7 @@ export default function TopNavigationBar({
                             </p>
                             <p className="dark:text-dark-med-emphasis mt-1 text-sm text-gray-500">
                               A Learning Management System fully integrated with
-                              the USACO Guide.
+                              the USAMO Guide.
                             </p>
                           </div>
                         </Link>

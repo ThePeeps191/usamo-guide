@@ -1,3 +1,3 @@
 # Contributing
 
-Check the [Contributing](https://usaco.guide/general/contributing) module.
+Check docs/Math_Topic_Template.md for content guidelines.

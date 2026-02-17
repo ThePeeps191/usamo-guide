@@ -26,7 +26,7 @@ export default function General(): JSX.Element {
    * For people behind proxies or with terrible internet - behold the power of long polling!
    */
   React.useEffect(() => {
-    if (localStorage.getItem('USACO_GUIDE_LONG_POLLING') === 'true') {
+    if (localStorage.getItem('USAMO_GUIDE_LONG_POLLING') === 'true') {
       setIsLongPolling(true);
     } else {
       setIsLongPolling(false);
@@ -35,10 +35,10 @@ export default function General(): JSX.Element {
 
   React.useEffect(() => {
     if (isLongPolling) {
-      localStorage.setItem('USACO_GUIDE_LONG_POLLING', 'true');
+      localStorage.setItem('USAMO_GUIDE_LONG_POLLING', 'true');
       // console.log('Initializing long polling');
     } else {
-      localStorage.setItem('USACO_GUIDE_LONG_POLLING', 'false');
+      localStorage.setItem('USAMO_GUIDE_LONG_POLLING', 'false');
       // console.log('Disabling long polling');
     }
   }, [isLongPolling]);

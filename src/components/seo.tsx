@@ -72,7 +72,7 @@ function SEO({
         },
         {
           property: `og:title`,
-          content: title || 'USACO Guide',
+          content: title || site.siteMetadata.title,
         },
         {
           property: `og:description`,
@@ -88,7 +88,7 @@ function SEO({
         },
         {
           name: `twitter:title`,
-          content: title || 'USACO Guide',
+          content: title || site.siteMetadata.title,
         },
         {
           name: `twitter:description`,

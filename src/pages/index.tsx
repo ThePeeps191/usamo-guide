@@ -49,7 +49,7 @@ const whiteButtonClassesBig =
   'text-xl bg-white px-6 py-3 md:px-8 md:py-4 rounded-lg font-medium text-gray-900 relative';
 const whiteButtonClasses =
   'text-lg md:text-xl bg-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-medium text-gray-900 relative';
-const usacoTitleClasses =
+const usamoTitleClasses =
   'md:text-center font-black tracking-tight text-5xl sm:text-6xl md:text-7xl 2xl:text-8xl';
 const linkTextStyles =
   'text-blue-600 dark:text-blue-300 transition hover:text-purple-600 dark:hover:text-purple-300';
@@ -77,12 +77,6 @@ export default function IndexPage({ path }): JSX.Element {
     <Layout>
       <SEO title={null} image={null} pathname={path} />
 
-      {/*<a*/}
-      {/*  href="http://usaco.org/"*/}
-      {/*  className="block text-base font-medium text-center text-white bg-blue-600 py-2"*/}
-      {/*>*/}
-      {/*  &larr; Back to usaco.org*/}
-      {/*</a>*/}
       <div className="bg-black">
         <TopNavigationBar />
       </div>
@@ -96,15 +90,15 @@ export default function IndexPage({ path }): JSX.Element {
             <div className="h-24"></div>
 
             <div className="flex md:justify-center dark:hidden">
-              <div className={classNames(usacoTitleClasses, 'mt-4 text-black')}>
-                USACO Guide
+              <div className={classNames(usamoTitleClasses, 'mt-4 text-black')}>
+                USAMO Guide
               </div>
             </div>
             <div className="invisible flex h-0 md:justify-center dark:visible dark:h-auto">
               <GlowingText
-                className={classNames(usacoTitleClasses, 'mt-4 text-white')}
+                className={classNames(usamoTitleClasses, 'mt-4 text-white')}
               >
-                USACO Guide
+                USAMO Guide
               </GlowingText>
             </div>
 
@@ -114,7 +108,7 @@ export default function IndexPage({ path }): JSX.Element {
               A free collection of{' '}
               <GradientText>curated, high-quality resources</GradientText>{' '}
               <br className="hidden md:block" />
-              to take you from Bronze to Platinum and beyond.
+              to take you from AMC 8 to USAMO and beyond.
             </p>
 
             <div className="h-8 sm:h-12"></div>
@@ -187,7 +181,7 @@ export default function IndexPage({ path }): JSX.Element {
                 </svg>
               </div>
 
-              <span>Created by the CP Initiative</span>
+              <span>Built by the USAMO Guide community</span>
             </a>
           </div>
           <div className="h-4 sm:h-6 md:h-16"></div>
@@ -195,7 +189,7 @@ export default function IndexPage({ path }): JSX.Element {
       </div>
       {/* End Hero */}
 
-      {/* Learn USACO. Efficiently. */}
+      {/* Learn Contest Math. Efficiently. */}
       <div className="bg-white dark:bg-gray-900">
         <div className="h-12 sm:h-20 md:h-36 2xl:h-48"></div>
 
@@ -207,21 +201,23 @@ export default function IndexPage({ path }): JSX.Element {
             )}
           >
             <div className="dark:hidden">
-              Learn USACO. <HighlightedText>Efficiently.</HighlightedText>
+              Learn contest math.{' '}
+              <HighlightedText>Efficiently.</HighlightedText>
             </div>
             <div className="invisible h-0 dark:visible dark:h-auto">
-              Learn USACO. <HighlightedText dark>Efficiently.</HighlightedText>
+              Learn contest math.{' '}
+              <HighlightedText dark>Efficiently.</HighlightedText>
             </div>
           </h2>
           <div className={headerSubtextSpacerClasses}></div>
           <p className={subtextClasses}>
-            Stop wasting time searching for problems and tutorials. The USACO
+            Stop wasting time searching for problems and tutorials. The USAMO
             Guide provides a{' '}
             <b className="text-black dark:text-white">
               comprehensive, organized roadmap
             </b>{' '}
-            carefully designed and crafted for USACO contestants – available to
-            everyone, for free.
+            carefully designed and crafted for math contest students –
+            available to everyone, for free.
           </p>
 
           <div className="h-12 md:h-20 2xl:h-36"></div>
@@ -277,8 +273,8 @@ export default function IndexPage({ path }): JSX.Element {
             feature={
               <div className="rounded-lg shadow-lg">
                 <StaticImage
-                  src="../assets/forum-screenshot.png"
-                  alt="USACO Forum Screenshot"
+                  src="../assets/nontrivial.png"
+                  alt="AoPS Community Screenshot"
                   placeholder="blurred"
                   layout="constrained"
                   width={560}
@@ -289,22 +285,23 @@ export default function IndexPage({ path }): JSX.Element {
             fade="none"
           >
             <span className="mb-4 block md:mb-8">
-              Get help from other community members in the USACO Forum.
+              Ask questions, share solutions, and learn from other contest
+              students in the AoPS community.
             </span>
 
             <a
-              href="https://forum.usaco.guide/"
+              href="https://artofproblemsolving.com/community"
               target="_blank"
               rel="noreferrer"
               className={linkTextStyles}
             >
-              View Forum &rarr;
+              Visit AoPS Community &rarr;
             </a>
           </Feature>
         </div>
         <div className="h-16 md:h-20 2xl:h-36"></div>
       </div>
-      {/* End Learn USACO. Efficiently. */}
+      {/* End Learn contest math. */}
 
       <div className="bg-gray-100 dark:bg-black">
         <div className="h-16 md:h-20 2xl:h-36"></div>
@@ -325,8 +322,8 @@ export default function IndexPage({ path }): JSX.Element {
 
           <p className={subtextClasses}>
             This guide is written by{' '}
-            <GradientText>top USACO contestants,</GradientText> including
-            two-time IOI winner and USACO Problemsetter Benjamin Qi.
+            <GradientText>top math contest performers</GradientText> and
+            educators who care about clean, rigorous solutions.
           </p>
           <div className="h-4 2xl:h-12"></div>
 
@@ -352,69 +349,66 @@ export default function IndexPage({ path }): JSX.Element {
         <div className="h-16 md:h-20 2xl:h-36"></div>
         <div className="px-4 sm:px-6 lg:px-8 2xl:px-16">
           <h2 className={classNames(headerClasses, 'md:text-center')}>
-            Created by the CP Initiative.
+            Built by the USAMO Guide community.
           </h2>
           <div className="h-4 md:h-8"></div>
           <p className={classNames(subtextClasses, 'mx-auto md:text-center')}>
-            Here are some of our other projects you might find useful!
+            Here are a few resources and study tools that pair well with the
+            guide.
           </p>
 
           <div className="2xl:24 h-12 md:h-16"></div>
 
           <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:gap-8 2xl:grid-cols-3">
             <CPIProjectCard
-              title="USACO Classes"
+              title="Weekly Problem Sessions"
               icon={AcademicCapIcon}
               iconClasses="from-fuchsia-500 to-purple-600"
-              url="https://joincpi.org/classes"
+              url="/groups"
             >
-              Learn USACO through affordable, high-quality classes with a
-              curriculum designed and developed by past USACO Finalists.
+              Join guided sessions focused on problem solving, solution
+              writing, and proof critique.
             </CPIProjectCard>
             <CPIProjectCard
-              title="USACO IDE"
+              title="AoPS Wiki Archive"
               icon={TerminalIcon}
               iconClasses="from-orange-400 to-pink-600"
-              url="https://ide.usaco.guide/"
+              url="https://artofproblemsolving.com/wiki/index.php/Main_Page"
             >
-              A realtime collaborative online IDE designed for competitive
-              programming and USACO.
+              Official statements and solutions for AMC/AIME/USAMO, all in one
+              place.
             </CPIProjectCard>
             <CPIProjectCard
-              title="USACO Groups"
+              title="Study Groups"
               icon={AcademicCapIcon}
               iconClasses="from-green-400 to-cyan-500"
-              url="https://usaco.guide/groups"
+              url="/groups"
             >
-              A Learning Management System fully integrated with the USACO
-              Guide. Perfect for clubs or group study sessions.
+              A learning management system for clubs, classes, and teams.
             </CPIProjectCard>
             <CPIProjectCard
-              title="Club Curriculum"
+              title="Mock Contests"
               icon={UserGroupIcon}
               iconClasses="from-purple-500 to-indigo-500"
-              url="https://joincpi.org/clubs"
+              url="/groups"
             >
-              Join our competitive programming club network to get access to
-              exclusive club curriculum and resources!
+              Run timed sets modeled after AMC/AIME/USAMO to build endurance.
             </CPIProjectCard>
             <CPIProjectCard
-              title="Competitive Programming Contests"
+              title="Proofwriting Clinics"
               icon={ChartBarIcon}
               iconClasses="from-cyan-400 to-sky-500"
-              url="https://joincpi.org/contests"
+              url="/groups"
             >
-              Participate in high-quality programming contests targeted towards
-              pre-college students!
+              Short workshops that emphasize rigor, structure, and clarity.
             </CPIProjectCard>
             <CPIProjectCard
-              title="Competitive Programming Workshops"
+              title="Mentorship"
               icon={CogIcon}
               iconClasses="from-yellow-400 to-orange-500"
-              url="https://joincpi.org/workshop"
+              url="/groups"
             >
-              Access workshops providing everything you need to know about
-              USACO.
+              Pair up with mentors for feedback on solutions and study plans.
             </CPIProjectCard>
           </div>
         </div>
@@ -439,21 +433,9 @@ export default function IndexPage({ path }): JSX.Element {
 
           <div className={headerSubtextSpacerClasses}></div>
           <p className={subtextClasses}>
-            The{' '}
-            <a
-              href="https://joincpi.org/"
-              target="_blank"
-              rel="noreferrer"
-              className="underline transition hover:text-blue-400"
-            >
-              Competitive Programming Initiative
-            </a>{' '}
-            is a student-run organization dedicated to promoting competitive
-            programming. Join us in our mission, and{' '}
-            <GradientText>
-              earn PVSA volunteer hours and leadership positions
-            </GradientText>{' '}
-            along the way!
+            USAMO Guide is a student-run community dedicated to olympiad
+            mathematics. Join us to write lessons, curate problem sets, and
+            grow as a mentor alongside fellow contest enthusiasts.
           </p>
           <div className="h-8 md:h-12"></div>
 
@@ -587,27 +569,22 @@ export default function IndexPage({ path }): JSX.Element {
               <div>
                 <div>
                   <dt className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">
-                    What is the USACO?
+                    What are AMC, AIME, and USAMO?
                   </dt>
                   <dd className="mt-2">
                     <p className="text-base leading-6 text-gray-500 dark:text-gray-400">
-                      USACO stands for the{' '}
+                      The AMC (8/10/12) and AIME are the main pipeline contests
+                      in the U.S. that culminate in USAMO. For official contest
+                      information and schedules, see the{' '}
                       <a
-                        href="http://www.usaco.org/"
+                        href="https://www.maa.org/math-competitions"
                         target="_blank"
                         rel="noreferrer"
                         className="text-blue-600 underline dark:text-blue-400"
                       >
-                        USA Computing Olympiad
+                        MAA competitions page
                       </a>
-                      . Check out the{' '}
-                      <Link
-                        to="/general/usaco-faq"
-                        className="text-blue-600 underline dark:text-blue-400"
-                      >
-                        USACO FAQ Page
-                      </Link>{' '}
-                      for more information.
+                      .
                     </p>
                   </dd>
                 </div>
@@ -617,10 +594,9 @@ export default function IndexPage({ path }): JSX.Element {
                   </dt>
                   <dd className="mt-2">
                     <p className="text-base leading-6 text-gray-500 dark:text-gray-400">
-                      No, USACO does not have an official syllabus. This guide
-                      merely lists topics that have <i>historically</i> appeared
-                      in USACO contests; it makes no guarantees about the topics
-                      in future USACO contests.
+                      No. This guide is a community-curated roadmap that
+                      reflects common contest topics and problem-solving
+                      techniques. It does not represent an official syllabus.
                     </p>
                   </dd>
                 </div>
@@ -634,10 +610,10 @@ export default function IndexPage({ path }): JSX.Element {
                       bug, typo, broken link, unclear explanation, etc), use the
                       "Contact Us" button. Alternatively, email us at{' '}
                       <a
-                        href="mailto:usacoguide@gmail.com"
+                        href="mailto:usamoguide@gmail.com"
                         className="text-blue-600 underline dark:text-blue-400"
                       >
-                        usacoguide@gmail.com
+                        usamoguide@gmail.com
                       </a>
                       .
                     </p>
@@ -649,16 +625,8 @@ export default function IndexPage({ path }): JSX.Element {
                   </dt>
                   <dd className="mt-2">
                     <p className="text-base leading-6 text-gray-500 dark:text-gray-400">
-                      Check out the{' '}
-                      <a
-                        href="https://joincpi.org/?ref=home"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-blue-600 underline dark:text-blue-400"
-                      >
-                        Competitive Programming Initiative
-                      </a>
-                      !
+                      Check out AoPS classes and community-led study groups, or
+                      join the USAMO Guide study cohorts.
                     </p>
                   </dd>
                 </div>
@@ -666,13 +634,12 @@ export default function IndexPage({ path }): JSX.Element {
               <div className="mt-12 md:mt-0">
                 <div>
                   <dt className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">
-                    Is this guide for non-USACO competitive programmers?
+                    Is this guide only for USAMO qualifiers?
                   </dt>
                   <dd className="mt-2">
                     <p className="text-base leading-6 text-gray-500 dark:text-gray-400">
-                      Of course! While we structure our content around USACO,
-                      feel free to use this guide even if you don't do USACO.
-                      You will still learn a lot from it!
+                      Not at all. The guide is designed to support AMC 8, AMC
+                      10/12, AIME, and USAMO learners at every level.
                     </p>
                   </dd>
                 </div>
@@ -682,16 +649,16 @@ export default function IndexPage({ path }): JSX.Element {
                   </dt>
                   <dd className="mt-2">
                     <p className="text-base leading-6 text-gray-500 dark:text-gray-400">
-                      If you get stuck, head over to the{' '}
+                      If you get stuck, ask questions in the{' '}
                       <a
-                        href="https://forum.usaco.guide"
+                        href="https://artofproblemsolving.com/community"
                         target="_blank"
                         rel="noreferrer"
                         className="text-blue-600 underline dark:text-blue-400"
                       >
-                        USACO Forum
+                        AoPS community
                       </a>{' '}
-                      for help.
+                      or reach out via the Contact Us button.
                     </p>
                   </dd>
                 </div>
@@ -701,14 +668,16 @@ export default function IndexPage({ path }): JSX.Element {
                   </dt>
                   <dd className="mt-2">
                     <p className="text-base leading-6 text-gray-500 dark:text-gray-400">
-                      To learn more about contributing, please visit{' '}
-                      <Link
-                        to="/general/contributing"
+                      Contributions are welcome! Visit our{' '}
+                      <a
+                        href="https://github.com/cpinitiative/usamo-guide"
+                        target="_blank"
+                        rel="noreferrer"
                         className="text-blue-600 underline dark:text-blue-400"
                       >
-                        this page
-                      </Link>
-                      . We appreciate any and all contributions!
+                        GitHub repository
+                      </a>
+                      to find guidelines and open issues.
                     </p>
                   </dd>
                 </div>
@@ -720,7 +689,7 @@ export default function IndexPage({ path }): JSX.Element {
                     <p className="text-base leading-6 text-gray-500 dark:text-gray-400">
                       Yes! Check out our{' '}
                       <a
-                        href="https://github.com/cpinitiative/usaco-guide/?ref=home"
+                        href="https://github.com/cpinitiative/usamo-guide"
                         target="_blank"
                         rel="noreferrer"
                         className="text-blue-600 underline dark:text-blue-400"
@@ -743,8 +712,7 @@ export default function IndexPage({ path }): JSX.Element {
       <div className="bg-gray-100 dark:bg-gray-900">
         <div className="mx-auto max-w-(--breakpoint-xl) px-4 py-12">
           <p className="dark:text-dark-med-emphasis text-center text-base leading-6 text-gray-400">
-            &copy; {new Date().getFullYear()} Competitive Programming
-            Initiative.
+            &copy; {new Date().getFullYear()} USAMO Guide.
             <br />
             No part of this website may be reproduced or commercialized in any
             manner without prior written permission.{' '}

@@ -31,7 +31,7 @@ export type UserData = {
   hideModules: boolean;
   /** show ignored modules in dashboard */
   showIgnored: boolean;
-  /** used for usaco monthlies table (I think) */
+  /** used for contest tables (legacy) */
   divisionTableQuery: {
     division: string;
     season: string;
@@ -202,7 +202,7 @@ export const UserDataProvider = ({
                   // firebase security rules will have a check to make sure that this is actually the first time
                   // the user has logged in. occasionally, with poor internet, firebase will glitch and
                   // we will accidentally override user data.
-                  // see https://github.com/cpinitiative/usaco-guide/issues/534
+                  // see https://github.com/cpinitiative/usamo-guide/issues/534
                   CREATING_ACCOUNT_FOR_FIRST_TIME: serverTimestamp(),
                 },
                 { merge: true }

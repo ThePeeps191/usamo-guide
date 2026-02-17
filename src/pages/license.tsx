@@ -119,15 +119,12 @@ export default function LicensePage(props: PageProps) {
             like to request to use these resources outside of the authorized use
             cases described above, please contact us at{' '}
             <a
-              href="mailto:usacoguide@gmail.com"
+              href="mailto:usamoguide@gmail.com"
               className="text-blue-500 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
             >
-              usacoguide@gmail.com
+              usamoguide@gmail.com
             </a>
             .
-            {/* While USACO Director Dr. Brian Dean will make all final decisions, */}
-            {/* please do not contact him directly. Instead, direct any questions */}
-            {/* related to the USACO Guide to the coordinator, Nathan Wang. */}
           </p>
           <Link
             to="/"

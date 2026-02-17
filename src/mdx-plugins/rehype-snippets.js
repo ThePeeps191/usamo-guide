@@ -77,8 +77,8 @@ template<class T> using pqg = priority_queue<T,vector<T>,greater<T>>;
 // bitwise ops
 // also see https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html
 constexpr int pct(int x) { return __builtin_popcount(x); } // # of bits set
-constexpr int bits(int x) { // assert(x >= 0); // make C++11 compatible until USACO updates ...
-\treturn x == 0 ? 0 : 31-__builtin_clz(x); } // floor(log2(x))
+constexpr int bits(int x) { // assert(x >= 0); // keep C++11 compatible
+	return x == 0 ? 0 : 31-__builtin_clz(x); } // floor(log2(x))
 constexpr int p2(int x) { return 1<<x; }
 constexpr int msk2(int x) { return p2(x)-1; }
 
@@ -257,7 +257,7 @@ inline namespace FileIO {
 \t\t// cin.exceptions(cin.failbit);
 \t\t// throws exception when do smth illegal
 \t\t// ex. try to read letter into int
-\t\tif (sz(s)) setIn(s+".in"), setOut(s+".out"); // for old USACO
+		if (sz(s)) setIn(s+".in"), setOut(s+".out");
 \t}
 }
 //EndCodeSnip`,
@@ -271,7 +271,7 @@ static class Kattio extends PrintWriter {
 \t\tsuper(o);
 \t\tr = new BufferedReader(new InputStreamReader(i));
 \t}
-\t// USACO-style file input
+	// contest-style file input
 \tpublic Kattio(String problemName) throws IOException {
 \t\tsuper(problemName + ".out");
 \t\tr = new BufferedReader(new FileReader(problemName + ".in"));

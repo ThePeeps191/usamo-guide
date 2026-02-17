@@ -1,7 +1,7 @@
 {
-  "name": "usaco-guide",
+  "name": "usamo-guide",
   "private": true,
-  "description": "A free collection of curated, high-quality resources to take you from Bronze to Platinum and beyond.",
+  "description": "A free collection of curated, high-quality math resources from AMC 8 to USAMO.",
   "version": "0.1.0",
   "author": "Nathan Wang <nathan.r.wang@gmail.com>",
   "engines": {
@@ -91,9 +91,9 @@
     "prism-react-renderer": "^2.4.1",
     "process": "^0.11.10",
     "prop-types": "^15.8.1",
-    "react": "^19.0.0",
+    "react": "^18.2.0",
     "react-calendar-heatmap": "^1.10.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^18.2.0",
     "react-dropzone": "^11.3.4",
     "react-flatpickr": "^3.10.7",
     "react-helmet": "^6.1.0",
@@ -146,7 +146,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "check-links": "blc http://localhost:9000 -qorf --exclude train.usaco.org --exclude quora.com --exclude tablesgenerator.com --exclude judge.yosupo.jp --exclude kenkoooo.com --requests 10",
+    "check-links": "blc http://localhost:9000 -qorf --exclude quora.com --exclude tablesgenerator.com --exclude judge.yosupo.jp --exclude kenkoooo.com --requests 10",
     "functions:deploy": "firebase deploy --only functions",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -157,10 +157,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/thecodingwizard/usaco-guide"
+    "url": "https://github.com/usamo-guide/usamo-guide"
   },
   "bugs": {
-    "url": "https://github.com/thecodingwizard/usaco-guide/issues"
+    "url": "https://github.com/usamo-guide/usamo-guide/issues"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": "eslint --config .eslintrc.js --resolve-plugins-relative-to .",

@@ -87,25 +87,25 @@ export const ProblemsetsFeature = (): JSX.Element => {
                   </thead>
                   <tbody className="table-alternating-stripes">
                     <TableRow
-                      source="CSES"
-                      title="Road Construction"
+                      source="AMC 10"
+                      title="Modular Patterns"
                       difficulty="Easy"
                     />
                     <TableRow
-                      source="USACO Gold"
-                      title="Closing the Farm"
-                      difficulty="Easy"
+                      source="AIME"
+                      title="Counting Arrangements"
+                      difficulty="Normal"
                       className="bg-gray-50 dark:bg-gray-900"
                     />
                     <TableRow
-                      source="USACO Gold"
-                      title="Mootube"
-                      difficulty="Normal"
+                      source="USAMO"
+                      title="Geometry Chase"
+                      difficulty="Hard"
                       starred
                     />
                     <TableRow
-                      source="Baltic OI"
-                      title="2016 - Park"
+                      source="AoPS"
+                      title="Inequality Practice Set"
                       difficulty="Hard"
                       className="bg-gray-50 dark:bg-gray-900"
                     />

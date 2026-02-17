@@ -29,7 +29,7 @@ export default function HTML(props) {
           />
           <link
             rel="preload"
-            href="https://rsms.me/inter/inter.css"
+            href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap"
             as="style"
             onload="this.rel='stylesheet'"
             onerror="this.rel=null"

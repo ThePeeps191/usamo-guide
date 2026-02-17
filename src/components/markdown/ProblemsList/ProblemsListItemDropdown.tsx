@@ -3,7 +3,7 @@ import React from 'react';
 import { Instance } from 'tippy.js';
 import { useDarkMode } from '../../../context/DarkModeContext';
 import useUserSolutionsForProblem from '../../../hooks/useUserSolutionsForProblem';
-import { getProblemURL, isUsaco, ProblemInfo } from '../../../models/problem';
+import { getProblemURL, ProblemInfo } from '../../../models/problem';
 import TextTooltip from '../../Tooltip/TextTooltip';
 import { DivisionProblemInfo } from './DivisionList/DivisionProblemInfo';
 import ProblemListItemSolution from './ProblemListItemSolution';
@@ -57,6 +57,7 @@ function ViewSolutionsContent({
 export default function ProblemsListItemDropdown(
   props: ProblemsListItemProps & { isFocusProblem: boolean }
 ) {
+  const [isClient, setIsClient] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
 
   const { problem, isDivisionTable, isFocusProblem } = props;
@@ -89,6 +90,30 @@ export default function ProblemsListItemDropdown(
   const tippyRef = React.useRef<Instance | null>(null);
   const [isDropdownShown, setIsDropdownShown] = React.useState(false);
 
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return (
+      <button
+        className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-gray-400"
+        aria-label="Problem actions"
+        type="button"
+      >
+        <svg
+          className="h-5 w-5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+        </svg>
+      </button>
+    );
+  }
+
   return (
     <Tippy
       onCreate={tippy => (tippyRef.current = tippy)}
@@ -112,18 +137,6 @@ export default function ProblemsListItemDropdown(
             >
               {copied ? 'Copied!' : 'Copy Permalink'}
             </button>
-            {isUsaco(problem.source) && (
-              <a
-                className="block w-full px-4 py-2 text-left text-sm font-normal! text-gray-700! hover:bg-gray-100! hover:text-gray-900! focus:outline-hidden dark:text-gray-300! dark:hover:bg-gray-800!"
-                href={`https://ide.usaco.guide/usaco/${problem.uniqueId.substring(
-                  problem.uniqueId.indexOf('-') + 1
-                )}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Open in IDE
-              </a>
-            )}
           </div>
         ) : (
           ''

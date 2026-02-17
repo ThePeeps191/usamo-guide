@@ -210,9 +210,8 @@ export default function ContributorsSection(): JSX.Element {
               By the Community, for the Community.
             </h1>
             <p className="mx-auto mb-6 max-w-prose text-lg leading-8 text-gray-500 dark:text-gray-400">
-              Comprised of USACO Finalists and top USACO competitors, our team
-              is committed to increasing participation in competitive
-              programming.
+              Our team includes math contest finalists, coaches, and educators
+              committed to growing the olympiad math community.
             </p>
             {/*<h1 className="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 dark:text-gray-100 sm:text-2xl sm:leading-10">
               Current Team Members

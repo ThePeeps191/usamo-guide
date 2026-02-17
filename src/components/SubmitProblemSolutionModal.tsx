@@ -192,7 +192,7 @@ export default function SubmitProblemSolutionModal({
             Solution Submitted!
           </h3>
           <div className="dark:text-dark-high-emphasis mt-2 text-sm leading-5 text-green-700">
-            <p>Thanks for helping to improve the USACO Guide.</p>
+            <p>Thanks for helping to improve the USAMO Guide.</p>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ experience.
    - Install [yarn 1](https://classic.yarnpkg.com/en/)
      - `npm install -g yarn`? might work
 2. Clone repo
-   - `git clone https://github.com/cpinitiative/usaco-guide.git`
+	- `git clone https://github.com/usamo-guide/usamo-guide.git`
 3. Install Dependencies
    - `yarn`
 4. Run development server
@@ -37,11 +37,11 @@ If this command crashes due to some `bhttp` error, it's probably a timeout. To
 fix temporarily, run:
 
 ```
-blc http://localhost:9000 -rof --exclude train.usaco.org
+blc http://localhost:9000 -rof
 ```
 
-And find where it crashes, then check the broken link manually and add to
-exclusion list. As `train.usaco.org` sometimes crashes, it's added already.
+And find where it crashes, then check the broken link manually and add it to
+the exclusion list.
 
 ## XDM Configuration
 

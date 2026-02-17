@@ -45,7 +45,7 @@ function GithubActions() {
       })
       .then(data => {
         return setFork(
-          data.find(repo => repo.name === 'usaco-guide')?.html_url ?? undefined
+          data.find(repo => repo.name === 'usamo-guide')?.html_url ?? undefined
         );
       });
   }, [githubInfo, branch, octokit, setFork]);
@@ -62,7 +62,7 @@ function GithubActions() {
         // @ts-ignore
         (await octokit.paginate('GET /repos/{owner}/{repo}/branches', {
           owner: githubInfo.login,
-          repo: 'usaco-guide',
+          repo: 'usamo-guide',
           per_page: 100,
           headers: {
             'X-GitHub-Api-Version': '2022-11-28',
@@ -86,9 +86,9 @@ function GithubActions() {
         await octokit.request(
           'GET /repos/{owner}/{repo}/git/matching-refs/{ref}',
           {
-            owner: 'cpinitiative',
-            repo: 'usaco-guide',
-            ref: 'heads/master',
+            owner: 'usamo-guide',
+            repo: 'usamo-guide',
+            ref: 'heads/main',
             headers: {
               'X-GitHub-Api-Version': '2022-11-28',
             },
@@ -98,7 +98,7 @@ function GithubActions() {
       octokit
         .request('POST /repos/{owner}/{repo}/git/refs', {
           owner: githubInfo.login,
-          repo: 'usaco-guide',
+          repo: 'usamo-guide',
           ref: `refs/heads/${branchName}`,
           sha: masterSha,
           headers: {
@@ -119,7 +119,7 @@ function GithubActions() {
         installed === undefined ? (
           <p>Detecting app installation...</p>
         ) : (
-          <a className="btn" href="https://github.com/apps/usaco-guide-editor">
+          <a className="btn" href="https://github.com/apps/usamo-guide-editor">
             Install GitHub App
           </a>
         )
@@ -133,7 +133,7 @@ function GithubActions() {
                 <p>No fork detected.</p>
                 <a
                   className="btn mt-1"
-                  href="https://github.com/cpinitiative/usaco-guide/fork"
+                  href="https://github.com/usamo-guide/usamo-guide/fork"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -157,7 +157,7 @@ function GithubActions() {
                 <p>
                   Current branch:{' '}
                   <a
-                    href={`https://github.com/${githubInfo.login}/usaco-guide/tree/${branch}`}
+                    href={`https://github.com/${githubInfo.login}/usamo-guide/tree/${branch}`}
                     target="_blank"
                     rel="noreferrer"
                     className="text-blue-500 hover:underline"
@@ -181,7 +181,7 @@ function GithubActions() {
               {branch && githubInfo && (
                 <a
                   className="btn mt-4"
-                  href={`https://github.com/${githubInfo.login}/usaco-guide/pull/new/${branch}`}
+                  href={`https://github.com/${githubInfo.login}/usamo-guide/pull/new/${branch}`}
                   target="_blank"
                   rel="noreferrer"
                 >

@@ -136,6 +136,7 @@ export default function ProblemStatusCheckbox({
   problem: ProblemInfo | DivisionProblemInfo;
   size?: 'small' | 'large';
 }): JSX.Element {
+  const [isClient, setIsClient] = useState(false);
   const darkMode = useDarkMode();
   const markdownLayoutContext = useContext(MarkdownLayoutContext);
   const userProgressOnModules = useUserProgressOnModules();
@@ -168,6 +169,26 @@ export default function ProblemStatusCheckbox({
   };
   const tippyRef = useRef<any>(null);
   const showConfetti = useContext(ConfettiContext);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return (
+      <span
+        className={`inline-block ${size === 'small' ? 'h-6 w-6' : 'h-8 w-8'}`}
+      >
+        <span
+          className={
+            `inline-block ${
+              size === 'small' ? 'h-6 w-6' : 'h-8 w-8'
+            } rounded-full ` + color[status]
+          }
+        />
+      </span>
+    );
+  }
   return (
     <Tippy
       onCreate={tippy => (tippyRef.current = tippy)}

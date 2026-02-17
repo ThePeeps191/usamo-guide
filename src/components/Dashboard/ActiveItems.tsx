@@ -54,17 +54,12 @@ export default function ActiveItems({
     const bstatus = statusVal[b.status];
     if (astatus != bstatus) return astatus - bstatus;
     const getLabel = x => {
-      // put active USACO problems first
+      // put active modules in section order
       const secs = [
-        'General',
-        'Bronze',
-        'Old Bronze',
-        'Silver',
-        'Old Silver',
-        'Gold',
-        'Old Gold',
-        'Platinum',
+        'Foundations',
+        'Intermediate',
         'Advanced',
+        'USAMO',
       ];
       for (let i = 0; i < secs.length; ++i) if (x.startsWith(secs[i])) return i;
       return 100;

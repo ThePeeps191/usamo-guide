@@ -34,7 +34,7 @@ export default class GlobalErrorBoundary extends React.Component<
           <p className="mt-8 text-center">
             Try{' '}
             <a
-              href="mailto:usacoguide@gmail.com"
+              href="mailto:usamoguide@gmail.com"
               target="_blank"
               className="text-blue-600 underline dark:text-blue-400"
               rel="noreferrer"
@@ -43,7 +43,7 @@ export default class GlobalErrorBoundary extends React.Component<
             </a>
             ,{' '}
             <a
-              href="https://github.com/cpinitiative/usaco-guide/issues"
+              href="https://github.com/cpinitiative/usamo-guide/issues"
               target="_blank"
               className="text-blue-600 underline dark:text-blue-400"
               rel="noreferrer"

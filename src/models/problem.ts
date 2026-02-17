@@ -1,114 +1,42 @@
 import { slug } from 'github-slugger';
 import * as defaultOrdering from '../../content/ordering';
-import PGS from '../components/markdown/PGS';
-import id_to_sol from '../components/markdown/ProblemsList/DivisionList/id_to_sol.json';
-import { books } from '../utils/books';
-
-export const recentUsaco = ['Bronze', 'Silver', 'Gold', 'Platinum'];
-
-// abbreviation -> [URL, description or full name, instructions to view solutions]
+// source -> [base URL, description, solution instructions]
 export const probSources = {
-  Bronze: [
-    'http://www.usaco.org/index.php?page=viewproblem2&cpid=',
-    'USACO 2015-16 to present',
+  'AMC 8': [
+    'https://artofproblemsolving.com/wiki/index.php/AMC_8',
+    'AMC 8 (Mathematical Association of America)',
+    'Most official solutions are compiled on the AoPS wiki for the contest year.',
   ],
-  Silver: [
-    'http://www.usaco.org/index.php?page=viewproblem2&cpid=',
-    'USACO 2015-16 to present',
+  'AMC 10': [
+    'https://artofproblemsolving.com/wiki/index.php/AMC_10',
+    'AMC 10 (Mathematical Association of America)',
+    'Most official solutions are compiled on the AoPS wiki for the contest year.',
   ],
-  Gold: [
-    'http://www.usaco.org/index.php?page=viewproblem2&cpid=',
-    'USACO 2015-16 to present',
+  'AMC 12': [
+    'https://artofproblemsolving.com/wiki/index.php/AMC_12',
+    'AMC 12 (Mathematical Association of America)',
+    'Most official solutions are compiled on the AoPS wiki for the contest year.',
   ],
-  Platinum: [
-    'http://www.usaco.org/index.php?page=viewproblem2&cpid=',
-    'USACO 2015-16 to present',
+  AIME: [
+    'https://artofproblemsolving.com/wiki/index.php/AIME',
+    'American Invitational Mathematics Examination',
+    'Most official solutions are compiled on the AoPS wiki for the contest year.',
   ],
-  'Old Bronze': [
-    'http://www.usaco.org/index.php?page=viewproblem2&cpid=',
-    'USACO Platinum did not exist prior to 2015-16.',
+  USAMO: [
+    'https://artofproblemsolving.com/wiki/index.php/USAMO',
+    'United States of America Mathematical Olympiad',
+    'Official solutions and discussions are archived on the AoPS wiki.',
   ],
-  'Old Silver': [
-    'http://www.usaco.org/index.php?page=viewproblem2&cpid=',
-    'USACO Platinum did not exist prior to 2015-16.',
+  'AoPS Wiki': [
+    'https://artofproblemsolving.com/wiki/index.php',
+    'Art of Problem Solving Wiki',
+    'The AoPS wiki often includes multiple solutions and commentary.',
   ],
-  'Old Gold': [
-    'http://www.usaco.org/index.php?page=viewproblem2&cpid=',
-    'USACO Platinum did not exist prior to 2015-16.',
+  MAA: [
+    'https://www.maa.org/math-competitions',
+    'Mathematical Association of America',
   ],
-  AC: [
-    'https://atcoder.jp/',
-    'AtCoder',
-    'The editorial button is right next to the problem title. If "there is no editorial yet," check the "Overall Editorial" PDF below.',
-  ],
-  CC: [
-    'https://www.codechef.com/problems/',
-    'CodeChef',
-    'There should be a link to the editorial at the bottom of the page.',
-  ],
-  CF: [
-    'https://codeforces.com/contest/',
-    'Codeforces',
-    'Check contest materials, located to the right of the problem statement.',
-  ],
-  'CF EDU': ['https://codeforces.com/edu/courses', 'Codeforces EDU'],
-  'CF Gym': ['https://codeforces.com/gyms', 'Codeforces Gym'],
-  CSA: [
-    'https://csacademy.com/contest/archive/task/',
-    'CS Academy',
-    'The editorial tab should be right next to the statement tab.',
-  ],
-  CSES: [
-    'https://cses.fi/problemset/task/',
-    'Code Submission Evaluation System (includes CPH problemset)',
-  ],
-  DMOJ: [
-    'https://dmoj.ca/problem/',
-    'DMOJ: Modern Online Judge',
-    'There might be a "Read Editorial" button on the right side of the page.',
-  ],
-  FHC: [
-    'https://www.facebook.com/codingcompetitions/hacker-cup/',
-    'Facebook Hacker Cup',
-    'There should be a "Solutions" tab on the left side of the page.',
-  ],
-  HR: [
-    'https://www.hackerrank.com/',
-    'HackerRank',
-    'The editorial tab should be right next to the discussions tab.',
-  ],
-  Kattis: ['https://open.kattis.com/problems/', 'open.kattis.com'],
-  LC: ['https://leetcode.com/problems/', 'LeetCode'],
-  POI: [
-    'https://szkopul.edu.pl/problemset/problem/',
-    'Polish Olympiad in Informatics',
-  ],
-  SPOJ: ['https://www.spoj.com/problems/', 'Sphere Online Judge'],
-  TLX: [
-    'https://tlx.toki.id/',
-    'tlx.toki.id',
-    'The editorial should be available in the announcements tab.',
-  ],
-  YS: ['https://judge.yosupo.jp/problem/', 'Library Checker'],
-};
-
-// olympiads on DMOJ and oj.uz
-// abbreviation -> [OJ, full name]
-export const olympiads = {
-  CCC: ['DMOJ', 'Canadian Computing Competition'],
-  CCO: ['DMOJ', 'Canadian Computing Olympiad'],
-  DMOPC: ['DMOJ', 'DMOJ Monthly Open Programming Competition'],
-  APIO: ['oj.uz', 'Asia-Pacific Informatics Olympiad'],
-  'Baltic OI': ['oj.uz', 'Baltic Olympiad in Informatics'],
-  CEOI: ['oj.uz', 'Central European Olympiad in Informatics'],
-  COI: ['oj.uz', 'Croatian Olympiad in Informatics'],
-  COCI: ['oj.uz', 'Croatian Open Contest in Informatics'],
-  IOI: ['oj.uz', 'International Olympiad in Informatics'],
-  IZhO: ['oj.uz', 'International Zhautykov Olympiad'],
-  JOI: ['oj.uz', 'Japanese Olympiad in Informatics'],
-  LMiO: ['oj.uz', 'Lithuanian Olympiad in Informatics'],
-  RMI: ['oj.uz', 'Romanian Master of Informatics'],
-  'NOI.sg': ['oj.uz', 'Singapore National Olympiad in Informatics'],
+  Custom: ['https://usamo.guide/', 'Custom Problem (USAMO Guide)'],
 };
 
 export type ProblemInfo = {
@@ -119,7 +47,7 @@ export type ProblemInfo = {
   name: string;
   url: string;
   /**
-   * Source of the problem. More information about some problem sources can be found in the probSources and the olympiads map.
+   * Source of the problem. See probSources for descriptions.
    */
   source: string;
   sourceDescription?: string;
@@ -200,24 +128,6 @@ export type ProblemSolutionMetadata =
       url: string;
     }
   | {
-      // Competitive Programming Handbook
-      // Ex: 5.3 or something
-      kind: 'CPH';
-      section: string;
-    }
-  | {
-      // USACO solution, generates it based off of the USACO problem ID
-      // ex. 1113 is mapped to sol_prob1_gold_feb21.html
-      kind: 'USACO';
-      usacoId: string;
-    }
-  | {
-      // IOI solution, generates it based off of the year
-      // ex. Maps year = 2001 to https://ioinformatics.org/page/ioi-2001/27
-      kind: 'IOI';
-      year: number;
-    }
-  | {
       // no solution exists
       kind: 'none';
     }
@@ -234,71 +144,16 @@ export type ProblemSolutionMetadata =
       sketch: string;
     };
 
-// Checks if a given source is USACO
-export const isUsaco = (source: string): boolean => {
-  if (recentUsaco.some(x => source.includes(x))) return true;
-  if (source.startsWith('20')) {
-    // this is for the division list -- the source in this case is like 2015 December or something
-    if (
-      ['December', 'January', 'February', 'US Open'].some(x =>
-        source.endsWith(x)
-      )
-    ) {
-      return true;
-    }
-  }
-  return false;
-};
-
-// throws if it detects invalid USACO Metadata
-// TODO: add more checks?
-export function checkInvalidUsacoMetadata(metadata: ProblemMetadata) {
-  if (!isUsaco(metadata.source)) return;
-  if (metadata.url.startsWith('http://poj.org/')) return;
-  const id = metadata.uniqueId.substring(metadata.uniqueId.indexOf('-') + 1);
-  if (!metadata.url.endsWith('=' + id)) {
-    throw Error(`Invalid USACO Metadata: id=${id} url=${metadata.url}`);
-  }
-  if (metadata.solutionMetadata.kind == 'USACO') {
-    if (metadata.solutionMetadata.usacoId !== id) {
-      throw Error(
-        `Invalid USACO Metadata: id=${id} solutionMetadata.usacoId=${metadata.solutionMetadata.usacoId}`
-      );
-    }
-  } else if (
-    !['internal', 'in-module'].includes(metadata.solutionMetadata.kind)
-  ) {
-    throw new Error(
-      `Invalid USACO Metadata: id=${id} metadata.solutionMetadata.kind=${metadata.solutionMetadata.kind}`
-    );
-  }
-}
 
 export function getProblemURL(
   problem: Pick<ProblemInfo, 'source' | 'name' | 'uniqueId'> & {
     [x: string]: any;
   }
 ): string {
-  // USACO and CSES sometimes have duplicate problem names
-  // so we should add the ID to the URL
-  return `/problems/${
-    isUsaco(problem.source) || problem.source === 'CSES'
-      ? problem.uniqueId
-      : slug(problem.source)
-  }-${slug(problem.name.replace(' - ', ''))}`;
+  return `/problems/${slug(problem.source)}-${slug(
+    problem.name.replace(' - ', ' ')
+  )}`;
 }
-
-/**
- * Retrieves the code from USACO or CSES URL's (finds trailing numbers).
- * Ex: https://cses.fi/problemset/task/1652 yields 1652
- */
-const getTrailingCodeFromProblemURL = (url: string): number => {
-  const match = url.match(/([0-9]+)\/?$/);
-  if (match === null) {
-    throw new Error('Could not extract USACO / CSES code from URL.');
-  }
-  return parseInt(match[1]);
-};
 
 export const getProblemInfo = (
   metadata: ProblemMetadata,
@@ -359,46 +214,6 @@ export const getProblemInfo = (
       url: solutionMetadata.url,
       label: 'External Sol',
     };
-  } else if (solutionMetadata.kind === 'CPH') {
-    const getSec = (dictKey, book, sec) => {
-      let url = book;
-      if (sec[sec.length - 1] == ',') sec = sec.substring(0, sec.length - 1);
-      if (!/^\d.*$/.test(sec)) return url;
-      if (!(sec in PGS[dictKey])) {
-        throw `Could not find section ${sec} in source ${dictKey}`;
-      }
-      url += '#page=' + PGS[dictKey][sec];
-      return url;
-    };
-    const source = 'CPH';
-    const cphUrl = getSec(source, books[source][0], solutionMetadata.section);
-    sol = {
-      kind: 'link',
-      label: 'CPH ' + solutionMetadata.section,
-      url: cphUrl,
-    };
-  } else if (solutionMetadata.kind === 'USACO') {
-    if (!id_to_sol.hasOwnProperty(solutionMetadata.usacoId)) {
-      throw new Error(
-        "Couldn't find a corresponding USACO external solution for USACO problem ID " +
-          solutionMetadata.usacoId
-      );
-    }
-    sol = {
-      kind: 'link',
-      label: 'External Sol',
-      url:
-        `http://www.usaco.org/current/data/` +
-        id_to_sol[solutionMetadata.usacoId],
-    };
-  } else if (solutionMetadata.kind === 'IOI') {
-    const year = solutionMetadata.year;
-    const num = year - 1994 + 20;
-    sol = {
-      kind: 'link',
-      label: 'External Sol',
-      url: `https://ioinformatics.org/page/ioi-${year}/` + num.toString(),
-    };
   } else if (solutionMetadata.kind === 'none') {
     sol = null;
   } else if (solutionMetadata.kind === 'in-module') {
@@ -410,7 +225,7 @@ export const getProblemInfo = (
     sol = {
       kind: 'link',
       label: 'In Module',
-      url: `https://usaco.guide/${
+      url: `https://usamo.guide/${
         ordering.moduleIDToSectionMap[solutionMetadata.moduleId]
       }/${solutionMetadata.moduleId}#problem-${info.uniqueId}`,
     };
@@ -441,45 +256,8 @@ export function generateProblemUniqueId(
   name: string,
   url: string
 ): string {
-  if (isUsaco(source)) {
-    return `usaco-${getTrailingCodeFromProblemURL(url)}`;
-  } else if (source === 'CSES') {
-    return `cses-${getTrailingCodeFromProblemURL(url)}`;
-  } else if (source === 'CF') {
-    const num = url.match(/([0-9]+)/g)![0];
-    const char = url.match(/\/([A-z0-9]+)$/)![1];
-    if (url.indexOf('gym') !== -1) {
-      return `cfgym-${num}${char}`;
-    } else {
-      return `cf-${num}${char}`;
-    }
-  } else {
-    const camelCase = x => {
-      // In case it's something like 2018 - Problem Name
-      if (x.match(/^[0-9]{4}/) !== null) {
-        return `${x[2]}${x[3]}-${camelCase(x.substring(7))}`;
-      }
-      // remove whitespace
-      x = x.replace(/[^\w\s]/g, '');
-      // camel case everything (first word uppercase)
-      const str = x.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-        return word.toUpperCase();
-      });
-      if (str.split(' ').length === 1) {
-        // special case: if there's only one word, it should be lowercase
-        return str.toLowerCase();
-      } else {
-        return str.replace(/\s+/g, '');
-      }
-    };
-    if (source === 'Baltic OI') {
-      return `baltic-${camelCase(name)}`;
-    } else if (source === 'Balkan OI') {
-      return `balkan-${camelCase(name)}`;
-    } else {
-      return `${camelCase(source)}-${camelCase(name)}`;
-    }
-  }
+  const normalize = (value: string) => slug(value.replace(' - ', ' '));
+  return `${normalize(source)}-${normalize(name)}`;
 }
 
 export function autoGenerateSolutionMetadata(
@@ -487,28 +265,7 @@ export function autoGenerateSolutionMetadata(
   name: string,
   url: string
 ): ProblemSolutionMetadata | null {
-  if (isUsaco(source)) {
-    return {
-      kind: 'USACO',
-      usacoId: '' + getTrailingCodeFromProblemURL(url),
-    };
-  } else if (source == 'IOI') {
-    for (let i = 1994; i <= 2089; ++i) {
-      const des = i.toString();
-      let des2 = (i % 100).toString();
-      if (des2.length == 1) des2 = '0' + des2;
-      if (name.indexOf(des) !== -1 || name.indexOf(des2) !== -1) {
-        return {
-          kind: 'IOI',
-          year: i,
-        };
-      }
-    }
-    return null;
-  } else if (
-    probSources.hasOwnProperty(source) &&
-    probSources[source].length === 3
-  ) {
+  if (probSources.hasOwnProperty(source) && probSources[source].length === 3) {
     return {
       kind: 'autogen-label-from-site',
       site: source,

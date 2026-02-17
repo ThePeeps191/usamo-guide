@@ -1,10 +1,8 @@
-import { graphql, useStaticQuery } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 import { useState } from 'react';
 import { useLastVisitInfo } from '../../context/UserDataContext/properties/lastVisit';
 
-// note: cows will be unlocked in lexicographical order
+// note: insights are unlocked in order
 
 const ComeBackTimer = ({ tomorrowMilliseconds }) => {
   const [milliseconds, setMilliseconds] = React.useState(
@@ -30,13 +28,13 @@ const ComeBackTimer = ({ tomorrowMilliseconds }) => {
       <p className="my-2 text-2xl">
         {hours} hours {minutes} minutes {seconds} seconds
       </p>
-      to {days ? 'continue your streak' : 'unlock this cow photo'}!
-      {days ? ` Photo will be unlocked after ${days + 1} days.` : null}
+      to {days ? 'continue your streak' : 'unlock this math insight'}!
+      {days ? ` Insight unlocks after ${days + 1} days.` : null}
     </div>
   );
 };
 
-const PhotoCard = ({ img, day, tomorrowMilliseconds, hiddenOnDesktop }) => {
+const PhotoCard = ({ text, day, tomorrowMilliseconds, hiddenOnDesktop }) => {
   return (
     <div
       className={
@@ -46,24 +44,23 @@ const PhotoCard = ({ img, day, tomorrowMilliseconds, hiddenOnDesktop }) => {
       <div className="flex flex-col overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
         <div className="px-4 pt-5 pb-4 sm:px-6 sm:pt-6">
           <h3 className="dark:text-dark-high-emphasis text-lg leading-6 font-medium text-gray-800">
-            Day {day} Photo
+            Day {day} Insight
           </h3>
         </div>
-        {/* We set text size to 0px because GatsbyImage is inline block. Without it, there's extra space after the image. */}
-        <div className="relative overflow-hidden text-[0px]">
+        <div className="relative overflow-hidden">
           {tomorrowMilliseconds >= 0 ? (
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/25 p-4 text-center text-base font-medium text-black dark:bg-black/25 dark:text-white">
               <ComeBackTimer tomorrowMilliseconds={tomorrowMilliseconds} />
             </div>
           ) : null}
-          <GatsbyImage
-            image={img}
-            className="w-full object-cover"
-            alt="Cow"
+          <div
+            className="flex min-h-[220px] items-center justify-center bg-slate-50 px-6 py-10 text-center text-lg font-semibold text-slate-700 dark:bg-slate-900 dark:text-slate-200"
             style={
-              tomorrowMilliseconds >= 0 ? { filter: 'blur(60px)' } : undefined
+              tomorrowMilliseconds >= 0 ? { filter: 'blur(6px)' } : undefined
             }
-          />
+          >
+            {text}
+          </div>
         </div>
       </div>
     </div>
@@ -71,27 +68,21 @@ const PhotoCard = ({ img, day, tomorrowMilliseconds, hiddenOnDesktop }) => {
 };
 
 export default function DailyStreak({ streak }) {
-  const data: Queries.DailyStreakQuery = useStaticQuery(graphql`
-    query DailyStreak {
-      allFile(
-        filter: { relativePath: { regex: "/^cows/.*/" } }
-        sort: { fields: name }
-      ) {
-        nodes {
-          childImageSharp {
-            gatsbyImageData(quality: 100, layout: CONSTRAINED, width: 592)
-          }
-          name
-        }
-      }
-    }
-  `);
-  // https://www.digitalocean.com/community/tutorials/react-usememo
-  const cows = React.useMemo(() => {
-    return data.allFile.nodes.map(
-      node => node.childImageSharp!.gatsbyImageData
-    );
-  }, []);
+  const insights = React.useMemo(
+    () => [
+      'Look for symmetry first; it often halves your work.',
+      'Try small cases to guess a pattern, then prove it.',
+      'Write what you know, then simplify aggressively.',
+      'Check equality cases to guide substitutions.',
+      'Diagram everything in geometry, even if it feels obvious.',
+      'Use invariants when a process repeats.',
+      'If counting is messy, try the complement.',
+      'Think about parity whenever integers appear.',
+      'When stuck, reframe the problem with new variables.',
+      'Clean write-ups win partial credit and full credit.',
+    ],
+    []
+  );
   const { lastVisitDate } = useLastVisitInfo();
 
   // we don't want to render streaks during Server-Side Generation
@@ -103,7 +94,7 @@ export default function DailyStreak({ streak }) {
 
   const generatePrimes = (): number[] => {
     const primes: number[] = [];
-    for (let i = 2; primes.length < cows.length; ++i) {
+    for (let i = 2; primes.length < insights.length; ++i) {
       let composite = false;
       for (let j = 2; j * j <= i; ++j) if (i % j == 0) composite = true;
       if (!composite) primes.push(i);
@@ -119,7 +110,7 @@ export default function DailyStreak({ streak }) {
       return (
         <PhotoCard
           key={i}
-          img={cows[i]}
+          text={insights[i]}
           day={times[i]}
           hiddenOnDesktop={hideYesNo}
           tomorrowMilliseconds={-1}
@@ -136,15 +127,8 @@ export default function DailyStreak({ streak }) {
                   You've ran out of cow photos!
                 </h3>
                 <div className="dark:text-dark-med-emphasis mt-3 space-y-1 text-sm leading-5 text-gray-500">
-                  Seeing that you're addicted to USACO Guide, you should
-                  definitely reach out to us regarding{' '}
-                  <a
-                    href="/general/contributing"
-                    className="font-bold text-blue-500"
-                  >
-                    contributing
-                  </a>
-                  !
+                  You've unlocked all current insights. If you want to help
+                  add more, reach out via the Contact Us button.
                 </div>
               </div>
             </div>
@@ -155,7 +139,7 @@ export default function DailyStreak({ streak }) {
       return (
         <PhotoCard
           key={i}
-          img={cows[i]}
+          text={insights[i]}
           day={times[i]}
           hiddenOnDesktop={hideYesNo}
           tomorrowMilliseconds={
@@ -197,9 +181,8 @@ export default function DailyStreak({ streak }) {
                 {streak !== 1 && 's'}.
               </p>
               <p>
-                Each (prime) day you visit, you'll unlock a new cow photo (until
-                we run out). If you break the streak, the cow photos will
-                disappear!!
+                Each prime day you visit, you'll unlock a new math insight. If
+                you break the streak, the insights will disappear.
               </p>
             </div>
           </div>

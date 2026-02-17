@@ -21,10 +21,13 @@ export default function Template(props) {
     );
   // Above: We need to filter to make sure x.node.module is defined because problems listed under extraProblems.json don't have a corresponding module
   const markdownData = React.useMemo(() => {
+    const source = '';
+    const title = xdm.frontmatter.title;
+
     return new SolutionInfo(
       xdm.frontmatter.id,
-      xdm.frontmatter.source,
-      `${xdm.frontmatter.source} - ${xdm.frontmatter.title}`,
+      source,
+      title,
       xdm.frontmatter.author,
       xdm.frontmatter.contributors,
       xdm.toc,
@@ -80,7 +83,6 @@ export const pageQuery = graphql`
       body
       frontmatter {
         id
-        source
         title
         author
         contributors

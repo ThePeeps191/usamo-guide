@@ -79,12 +79,10 @@ export default function ProblemsPage(props: PageProps<DataProps>) {
       isMulti: true,
       items: (
         [
-          ['General', SECTIONS.general],
-          ['Bronze', SECTIONS.bronze],
-          ['Silver', SECTIONS.silver],
-          ['Gold', SECTIONS.gold],
-          ['Platinum', SECTIONS.plat],
-          ['Advanced', SECTIONS.adv],
+          ['Foundations', SECTIONS.foundations],
+          ['Intermediate', SECTIONS.intermediate],
+          ['Advanced', SECTIONS.advanced],
+          ['USAMO Prep', SECTIONS.usamo],
         ] as unknown as [string, Chapter[]][]
       ).map(([section, chapters]) => ({
         label: section,

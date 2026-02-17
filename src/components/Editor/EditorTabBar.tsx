@@ -55,7 +55,7 @@ const EditorTabBar: React.FC<EditorTabBarProps> = ({
         fileSha = (
           (await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
             owner: githubInfo.login,
-            repo: 'usaco-guide',
+            repo: 'usamo-guide',
             path: filePath,
             ref: branch,
             headers: {
@@ -70,7 +70,7 @@ const EditorTabBar: React.FC<EditorTabBarProps> = ({
         'PUT /repos/{owner}/{repo}/contents/{path}',
         {
           owner: githubInfo.login,
-          repo: 'usaco-guide',
+          repo: 'usamo-guide',
           path: filePath,
           message: `Update ${filePath}`,
           branch: branch,
@@ -93,7 +93,7 @@ const EditorTabBar: React.FC<EditorTabBarProps> = ({
     const response = (
       await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
         owner: githubInfo.login,
-        repo: 'usaco-guide',
+        repo: 'usamo-guide',
         path: filePath,
         ref: branch,
         headers: {

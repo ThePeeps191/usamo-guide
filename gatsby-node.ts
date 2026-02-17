@@ -3,10 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import * as freshOrdering from './content/ordering';
 import { typeDefs } from './graphql-types';
-import div_to_probs from './src/components/markdown/ProblemsList/DivisionList/div_to_probs.json';
 import { createXdmNode } from './src/gatsby/create-xdm-node';
 import {
-  checkInvalidUsacoMetadata,
   getProblemInfo,
   getProblemURL,
   ProblemMetadata,
@@ -14,9 +12,7 @@ import {
 } from './src/models/problem';
 // Questionable hack to get full commit history so that timestamps work
 try {
-  execSync(
-    `git fetch --unshallow https://github.com/cpinitiative/usaco-guide.git`
-  );
+  execSync(`git fetch --unshallow`);
 } catch (e) {
   console.warn(
     'Git fetch failed. Ignore this if developing or building locally.'
@@ -97,7 +93,6 @@ exports.onCreateNode = async api => {
       if (tableId === 'MODULE_ID') return;
       try {
         parsedContent[tableId].forEach((metadata: ProblemMetadata) => {
-          checkInvalidUsacoMetadata(metadata);
           if (process.env.CI) stream.write(metadata.uniqueId + '\n');
           transformObject(
             {
@@ -265,11 +260,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   let problemSlugs = {}; // maps slug to problem unique ID
   let problemInfo = {}; // maps unique problem ID to problem info
   let problemURLToUniqueID = {}; // maps problem URL to problem unique ID
-  let urlsThatCanHaveMultipleUniqueIDs = ['https://cses.fi/107/list/'];
+  let urlsThatCanHaveMultipleUniqueIDs: string[] = [];
   const userSolutionTemplate = path.resolve(
     `./src/templates/userSolutionTemplate.tsx`
   );
-  let usaco_uids: string[] = [];
   problems.forEach(({ node }) => {
     let slug = getProblemURL(node);
     if (
@@ -316,10 +310,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       );
     }
 
-    // skipping usaco problems to be created with div_to_probs
-    if (node.uniqueId.startsWith('usaco')) {
-      usaco_uids.push(node.uniqueId);
-    }
     problemSlugs[slug] = node.uniqueId;
     problemInfo[node.uniqueId] = node;
     problemURLToUniqueID[node.url] = node.uniqueId;
@@ -334,29 +324,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     });
   });
-  const divisions = ['Bronze', 'Silver', 'Gold', 'Platinum'];
-  divisions.forEach(division => {
-    div_to_probs[division].forEach(problem => {
-      const uniqueId = 'usaco-' + problem[0];
-      const name = problem[2];
-      const path = `problems/${uniqueId}/user-solutions`;
-
-      if (!usaco_uids.includes(uniqueId)) {
-        createPage({
-          path: path,
-          component: userSolutionTemplate,
-          context: {
-            problem: {
-              uniqueId: uniqueId,
-              name: name,
-            },
-            id: uniqueId,
-          },
-        });
-      }
-    });
-  });
-
   // End problems check
   const moduleTemplate = path.resolve(`./src/templates/moduleTemplate.tsx`);
   const modules = result.data.modules.edges;

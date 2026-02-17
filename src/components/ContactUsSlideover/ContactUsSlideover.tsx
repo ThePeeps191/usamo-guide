@@ -181,7 +181,7 @@ export default function ContactUsSlideover({
           Contact us about anything: suggestions, bugs, assistance, and more!
           This will be submitted as a public{' '}
           <a
-            href="https://github.com/cpinitiative/usaco-guide/issues"
+            href="https://github.com/usamo-guide/usamo-guide/issues"
             target="_blank"
             rel="noreferrer"
             className="underline"
@@ -211,30 +211,6 @@ export default function ContactUsSlideover({
       }
       onSubmit={handleSubmit}
     >
-      {/* <div className="bg-gray-50 dark:bg-gray-900 mb-4">
-        <div className="px-4 py-5 sm:p-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200">
-            Ask on the USACO Forum!
-          </h3>
-          <div className="mt-2 max-w-xl text-sm leading-5 text-gray-500 dark:text-gray-400">
-            <p>
-              Get a faster response by reaching out on the USACO Forum instead.
-            </p>
-          </div>
-          <div className="mt-5">
-            <span className="inline-flex rounded-md shadow-sm">
-              <a
-                href="https://forum.usaco.guide/"
-                target="_blank"
-                rel="noreferrer"
-                className="btn"
-              >
-                Join Forum
-              </a>
-            </span>
-          </div>
-        </div>
-      </div> */}
       <div className="mt-4 px-4 sm:px-6">
         {showSuccess && (
           <div className="rounded-md bg-green-50 p-4 dark:bg-green-800">
@@ -326,58 +302,9 @@ export default function ContactUsSlideover({
                 Topic
               </legend>
               <div className="text-sm">
-                The USACO Guide is not affiliated with the USACO. If you
-                encounter any issues with{' '}
-                <a
-                  className="text-blue-600 hover:underline dark:text-blue-300"
-                  target="_blank"
-                  rel="noreferrer"
-                  href="http://usaco.org"
-                >
-                  usaco.org
-                </a>{' '}
-                (e.g., trouble{' '}
-                <a
-                  className="text-blue-600 hover:underline dark:text-blue-300"
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://github.com/cpinitiative/usaco-guide/issues/2854"
-                >
-                  registering for an account
-                </a>
-                ), contact the USACO contest director (
-                <a
-                  className="text-blue-600 hover:underline dark:text-blue-300"
-                  target="_blank"
-                  rel="noreferrer"
-                  href="mailto:bcdean@clemson.edu"
-                >
-                  Brian Dean
-                </a>
-                ) rather than submitting this form.
-              </div>
-              <div className="text-sm">
-                <strong>
-                  If you have any questions about{' '}
-                  <a
-                    className="text-blue-600 hover:underline dark:text-blue-300"
-                    target="_blank"
-                    rel="noreferrer"
-                    href="https://joincpi.org/classes"
-                  >
-                    CPI classes
-                  </a>
-                  , please email{' '}
-                  <a
-                    className="text-blue-600 hover:underline dark:text-blue-300"
-                    target="_blank"
-                    rel="noreferrer"
-                    href="mailto:classes@joincpi.org"
-                  >
-                    classes@joincpi.org
-                  </a>{' '}
-                  rather than submitting this form.
-                </strong>
+                The USAMO Guide is a community project and is not affiliated
+                with the MAA, AMC, AIME, USAMO, or AoPS. If your question is
+                about those organizations, please contact them directly.
               </div>
               <div className="space-y-3">
                 {topics.map((t, idx) => (
@@ -407,7 +334,7 @@ export default function ContactUsSlideover({
                               className="text-blue-600 hover:underline dark:text-blue-300"
                               target="_blank"
                               rel="noreferrer"
-                              href="https://github.com/cpinitiative/usaco-guide/pulls"
+                              href="https://github.com/usamo-guide/usamo-guide/pulls"
                             >
                               here
                             </a>{' '}
@@ -416,7 +343,7 @@ export default function ContactUsSlideover({
                               className="text-blue-600 hover:underline dark:text-blue-300"
                               target="_blank"
                               rel="noreferrer"
-                              href="/general/contributing"
+                              href="https://github.com/usamo-guide/usamo-guide/blob/main/docs/Math_Topic_Template.md"
                             >
                               this module
                             </a>{' '}
@@ -428,11 +355,11 @@ export default function ContactUsSlideover({
                             You may get a faster response by reaching out on the{' '}
                             <a
                               className="text-blue-600 hover:underline dark:text-blue-300"
-                              href="https://forum.usaco.guide/"
+                              href="https://artofproblemsolving.com/community"
                               target="_blank"
                               rel="noreferrer"
                             >
-                              USACO Guide forum
+                              AoPS community
                             </a>{' '}
                             instead.
                           </div>
@@ -440,15 +367,7 @@ export default function ContactUsSlideover({
                         {topic === t[0] && t[0].includes('Website Bug') && (
                           <div>
                             If you are reporting a loss of user data, please
-                            include the information listed{' '}
-                            <a
-                              className="text-blue-600 hover:underline dark:text-blue-300"
-                              href="https://github.com/cpinitiative/usaco-guide/issues/3396#issuecomment-1414102550"
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              here.
-                            </a>
+                            include steps to reproduce and your browser info.
                           </div>
                         )}
                       </div>

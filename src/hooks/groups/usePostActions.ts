@@ -108,7 +108,7 @@ export function usePostActions(groupId: string) {
         hints: [],
         solution: null,
         isDeleted: false,
-        usacoGuideId: null,
+        guideProblemId: null,
         solutionReleaseMode: 'due-date',
       };
       batch.set(docRef, defaultProblem);
@@ -202,7 +202,7 @@ export function usePostActions(groupId: string) {
         filename: submission.filename,
         sourceCode: submission.sourceCode,
         firebase: {
-          collectionPath: `usaco-guide/databases/(default)/documents/groups/${groupId}/posts/${postId}/problems/${problemId}/submissions`,
+          collectionPath: `usamo-guide/databases/(default)/documents/groups/${groupId}/posts/${postId}/problems/${problemId}/submissions`,
           idToken,
           userID: firebaseUser!.uid,
         },

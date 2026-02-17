@@ -8,7 +8,7 @@ Also, make sure you are using Node v18.
 ```
 npm install -g firebase-tools
 firebase login --reauth
-firebase projects:list # check that you have access to usaco-guide
+firebase projects:list # check that you have access to usamo-guide
 cd src/functions
 npm install
 firebase deploy --only functions:submitContactForm # deploy single function

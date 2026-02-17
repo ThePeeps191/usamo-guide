@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
-  "$id": "https://usaco.guide/problems.schema.json",
+  "$id": "https://usamo.guide/problems.schema.json",
   "title": "Problem Data",
   "description": "Stores the problems (and their solutions) associated with a module.",
   "type": "object",
@@ -22,7 +22,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the problem, with NO source info whatsoever. Names should be unique within a source, so if multiple problems may have the same name, you will need to differentiate (this usually is not necessary, because although some usaco problems have the same name but different divisions, we count each division as a separate source, so it's ok to have one bronze problem with the same name as a silver problem).",
+          "description": "The name of the problem, with NO source info whatsoever. Names should be unique within a source; if multiple problems share a name, add a clarifier.",
           "type": "string"
         },
         "url": { "description": "The URL to the problem.", "type": "string" },
@@ -30,43 +30,14 @@
           "description": "Stores the problems (and their solutions) associated with a module.",
           "type": "string",
           "enum": [
-            "Bronze",
-            "Silver",
-            "Gold",
-            "Platinum",
-            "Old Bronze",
-            "Old Silver",
-            "Old Gold",
-            "AC",
-            "CC",
-            "CF",
-            "EDU",
-            "Gym",
-            "CSA",
-            "CSES",
-            "DMOJ",
-            "FHC",
-            "HR",
-            "Kattis",
-            "LC",
-            "POI",
-            "SPOJ",
-            "TLX",
-            "YS",
-            "CCC",
-            "CCO",
-            "DMOPC",
-            "APIO",
-            "Baltic OI",
-            "CEOI",
-            "COI",
-            "COCI",
-            "IOI",
-            "IZhO",
-            "JOI",
-            "LMiO",
-            "RMI",
-            "NOI.sg"
+            "AMC 8",
+            "AMC 10",
+            "AMC 12",
+            "AIME",
+            "USAMO",
+            "AoPS Wiki",
+            "MAA",
+            "Custom"
           ]
         },
         "difficulty": {
@@ -79,7 +50,7 @@
           "type": "boolean"
         },
         "tags": {
-          "description": "Tags for the problem. Please make sure to check https://usaco.guide/problems to make sure you are using preexisting tags as much as possible.",
+          "description": "Tags for the problem. Reuse existing tags when possible.",
           "type": "array",
           "items": {
             "type": "string"
@@ -96,15 +67,11 @@
                 "autogen-label-from-site",
                 "internal",
                 "link",
-                "CPH",
-                "USACO",
-                "IOI",
                 "none",
                 "in-module",
                 "sketch"
               ]
             },
-            "usacoId": { "type": "string" },
             "hasHints": { "type": "boolean" }
           },
           "required": ["kind"]

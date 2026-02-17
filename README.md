@@ -1,25 +1,21 @@
-![USACO Guide](./src/assets/banner-image-big.jpg)
+![USAMO Guide](./src/assets/banner-image-big.jpg)
 
-# USACO Guide
+# USAMO Guide
 
-A free collection of curated, high-quality resources to take you from Bronze to
-Platinum and beyond.
+A free collection of curated, high-quality resources for AMC, AIME, and USAMO
+preparation.
 
 ## Documentation + Contributing
 
-See the [contributing module](https://usaco.guide/general/contributing). All
-contributions are welcome! To get started, simply pick an
-[issue](https://github.com/cpinitiative/usaco-guide/issues) you'd like to work
+See docs/Math_Topic_Template.md for content guidelines. All contributions are
+welcome! To get started, simply pick an
+[issue](https://github.com/usamo-guide/usamo-guide/issues) you'd like to work
 on, leave a comment, and submit a Pull Request!
-
-Join our Discord server: https://discord.gg/VCxUzdYhzN
 
 ## Our Team
 
-The USACO Guide is run by the
-[Competitive Programming Initiative](https://joincpi.org/). We're looking for
-Content Authors to join our team to help us improve the Guide! Learn more
-[here](https://docs.google.com/document/d/13QpXqdiYQwjBLnywGL1FUG7GFdh8SM_1NigIkJl-A7k/edit).
+The USAMO Guide is run by the USAMO Guide team. We're looking for content
+authors to help us improve the Guide.
 
 ## Tech Stack
 
@@ -36,7 +32,7 @@ Our front-end is built with:
 
 ## Contact Info
 
-If you have any questions, please reach out to us at usacoguide@gmail.com.
+If you have any questions, please reach out to us at usamoguide@gmail.com.
 
 ## License
 

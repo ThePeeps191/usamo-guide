@@ -1,6 +1,5 @@
 import React from 'react';
-import { olympiads, ProblemInfo, probSources } from '../../../models/problem';
-import { UsacoTableProgress } from '../../Dashboard/DashboardProgress';
+import { ProblemInfo, probSources } from '../../../models/problem';
 import DifficultyBox from '../../DifficultyBox';
 import TextTooltip from '../../Tooltip/TextTooltip';
 import Tooltip from '../../Tooltip/Tooltip';
@@ -47,44 +46,9 @@ export default function ProblemsListItem(
   const sourceTooltip =
     isDivisionTable == false
       ? problem?.sourceDescription ||
-        (probSources[problem.source as keyof typeof probSources]?.[1] ??
-          olympiads[problem.source as keyof typeof olympiads]?.[1])
+        (probSources[problem.source as keyof typeof probSources]?.[1] ?? null)
       : null;
-
-  let resultsUrl = ''; // used only for division tables
-  if (isDivisionTable) {
-    const parts = problem.source.split(' ');
-    parts[0] = parts[0].substring(2);
-
-    if (parseInt(parts[0]) >= 26) {
-      // season26contest1results
-      let index = 0;
-      if (parts[1] == 'First') index = 1;
-      else if (parts[1] == 'Second') index = 2;
-      else if (parts[1] == 'Third') index = 3;
-      else if (parts[1] == 'Fourth') index = 4; // unsure of how US Open will be formatted yet, for now just use fourth + 4.
-
-      resultsUrl = `http://www.usaco.org/index.php?page=season${parts[0]}contest${index}results`;
-    } else {
-      // dec24results
-      if (parts[1] === 'US') parts[1] = 'open';
-      else parts[1] = parts[1].toLowerCase().substring(0, 3);
-      resultsUrl = `http://www.usaco.org/index.php?page=${parts[1]}${parts[0]}results`;
-    }
-  }
-  const sourceCol = isDivisionTable ? (
-    <ListTableCell className="font-medium whitespace-nowrap">
-      <a
-        href={resultsUrl}
-        className={'truncate'}
-        style={{ maxWidth: '15rem' }}
-        target="_blank"
-        rel="nofollow noopener noreferrer"
-      >
-        {problem.source}
-      </a>
-    </ListTableCell>
-  ) : (
+  const sourceCol = (
     <ListTableCell className="font-medium whitespace-nowrap">
       {sourceTooltip ? (
         <TextTooltip content={sourceTooltip}>{problem.source}</TextTooltip>
@@ -136,14 +100,7 @@ export default function ProblemsListItem(
       {statusCol}
       {sourceCol}
       {nameCol}
-      {props.showDifficulty &&
-        (isDivisionTable
-          ? props.showPercent && (
-              <ListTableCell className="text-left text-xs leading-4 font-medium tracking-wider uppercase">
-                <UsacoTableProgress completed={problem.percentageSolved} />
-              </ListTableCell>
-            )
-          : difficultyCol)}
+      {props.showDifficulty && !isDivisionTable && difficultyCol}
       <ListTableCell className="font-medium whitespace-nowrap">
         {problem.tags && problem.tags.length ? (
           <details

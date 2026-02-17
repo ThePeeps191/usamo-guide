@@ -55,8 +55,8 @@ export default function EditProblemPage(props: Props) {
         ...oldProblem,
         ...updates,
       };
-      if (merged.solutionReleaseMode === 'custom' && !merged.usacoGuideId) {
-        merged.usacoGuideId = '';
+      if (merged.solutionReleaseMode === 'custom' && !merged.guideProblemId) {
+        merged.guideProblemId = '';
       }
       return merged as GroupProblemData;
     },
@@ -114,9 +114,9 @@ export default function EditProblemPage(props: Props) {
       body: `See [${problem.url}](${problem.url})`,
       solution:
         problem.solution?.kind == 'internal'
-          ? `See [https://usaco.guide${[
+          ? `See [https://usamo.guide${[
               getProblemURL(problemInfo),
-            ]}/solution](https://usaco.guide${[
+            ]}/solution](https://usamo.guide${[
               getProblemURL(problemInfo),
             ]}/solution)`
           : problem.solution?.kind == 'link'
@@ -129,7 +129,7 @@ export default function EditProblemPage(props: Props) {
 
       source: problem.source,
       difficulty: problem.difficulty,
-      usacoGuideId: problem.objectID,
+      guideProblemId: problem.objectID,
     });
   };
   if (post.type !== 'assignment') {
@@ -188,19 +188,19 @@ export default function EditProblemPage(props: Props) {
                   onClick={() => setIsSearchOpen(true)}
                   className="btn"
                 >
-                  Import Problem From USACO Guide
+                  Import Problem From USAMO Guide
                 </button>
               </div>
               <div className="sm:col-span-4">
-                {problem.usacoGuideId ? (
+                {problem.guideProblemId ? (
                   <b className="block text-sm font-medium text-green-700 dark:text-green-200">
                     <CheckIcon
                       className={'mr-2 inline h-5 w-5 text-green-700'}
                     />
-                    This problem is linked to a USACO Guide Problem (
+                    This problem is linked to a USAMO Guide Problem (
                     <button
                       className={'text-blue-700 hover:underline'}
-                      onClick={() => editProblem({ usacoGuideId: null })}
+                      onClick={() => editProblem({ guideProblemId: null })}
                     >
                       Unlink
                     </button>
@@ -209,8 +209,8 @@ export default function EditProblemPage(props: Props) {
                 ) : (
                   <b className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                     <XIcon className={'mr-1 inline h-4 w-4 text-gray-700'} />
-                    This problem is not linked to a USACO Guide Problem. To link
-                    this problem to a USACO Guide Problem, import a problem from
+                    This problem is not linked to a USAMO Guide Problem. To link
+                    this problem to a USAMO Guide Problem, import a problem from
                     above.
                   </b>
                 )}

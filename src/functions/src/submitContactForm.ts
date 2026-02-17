@@ -48,7 +48,7 @@ const submitContactForm = functions.https.onCall(async data => {
     title += ` (${moduleName})`;
   }
   const createdIssue = await githubAPI.post(
-    '/repos/cpinitiative/usaco-guide/issues',
+    '/repos/cpinitiative/usamo-guide/issues',
     {
       title: title,
       body: body,

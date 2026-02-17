@@ -8,7 +8,7 @@ export default function Logo(): JSX.Element {
         <LogoSquare />
       </div>
       <span className="text-xl font-bold tracking-tight text-black dark:text-gray-300">
-        USACO Guide
+        USAMO Guide
       </span>
     </div>
   );

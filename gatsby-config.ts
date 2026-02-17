@@ -5,11 +5,11 @@ const flags = {
 };
 
 const siteMetadata = {
-  title: `USACO Guide`,
-  description: `A free collection of curated, high-quality competitive programming resources to take you from USACO Bronze to USACO Platinum and beyond. Written by top USACO Finalists, these tutorials will guide you through your competitive programming journey.`,
-  author: `@usacoguide`,
-  siteUrl: `https://usaco.guide/`,
-  keywords: ['USACO', 'Competitive Programming', 'USACO Guide'],
+  title: `USAMO Guide`,
+  description: `A comprehensive, free learning platform for AMC 8, AMC 10/12, AIME, and USAMO mathematics. Organized lessons, worked examples, and curated problem sets with full solutions.`,
+  author: `@usamoguide`,
+  siteUrl: `https://usamo.guide/`,
+  keywords: ['USAMO', 'AIME', 'AMC 10', 'AMC 12', 'AMC 8', 'Math Contest'],
 };
 
 const plugins = [
@@ -74,13 +74,13 @@ const plugins = [
   {
     resolve: `gatsby-plugin-manifest`,
     options: {
-      name: `USACO Guide`,
-      short_name: `USACO`,
+      name: `USAMO Guide`,
+      short_name: `USAMO`,
       start_url: `/`,
-      background_color: `#113399`,
-      theme_color: `#113399`,
+      background_color: `#0f172a`,
+      theme_color: `#0f172a`,
       display: `minimal-ui`,
-      icon: `src/assets/logo-square.png`, // This path is relative to the root of the site.
+      icon: `src/assets/usamo-logo.svg`, // This path is relative to the root of the site.
     },
   },
   {

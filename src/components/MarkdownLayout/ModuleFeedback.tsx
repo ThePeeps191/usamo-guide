@@ -14,16 +14,16 @@ export default function ModuleFeedback({
       </h2>
 
       <p className="mb-4 text-gray-600 dark:text-gray-400">
-        Leave suggestions for us by making a post on the{' '}
+        Leave suggestions by opening an issue on the{' '}
         <a
-          href="https://forum.usaco.guide/"
+          href="https://github.com/cpinitiative/usamo-guide/issues"
           target="_blank"
           rel="noreferrer"
           className="text-blue-600 underline dark:text-blue-300"
         >
-          USACO Forum
+          USAMO Guide GitHub
         </a>
-        ! Ex: Unclear sections, mislabeled problems, etc.
+        . Examples: unclear sections, mislabeled problems, or broken links.
       </p>
 
       {/*{showSuccess && (*/}

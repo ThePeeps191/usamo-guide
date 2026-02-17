@@ -55,9 +55,14 @@ function getQueryVariable(query, variable) {
 }
 
 export default function EditorPage(props: PageProps): JSX.Element {
+  const [isClient, setIsClient] = React.useState(false);
   const editor = useAtomValue(monacoEditorInstanceAtom);
   const openOrCreateExistingFile = useSetAtom(openOrCreateExistingFileAtom);
   const setToken = useSetAtom(tokenAtom);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   React.useEffect(() => {
     const code = new URLSearchParams(props.location.search).get('code');
@@ -98,7 +103,7 @@ export default function EditorPage(props: PageProps): JSX.Element {
             <EditorTopNav />
           </LazyLoad>
 
-          {typeof window !== 'undefined' && (
+          {isClient && (
             <Split
               className="relative h-full flex-1 overflow-hidden [&>.gutter.gutter-horizontal]:cursor-ew-resize [&>.gutter.gutter-horizontal]:bg-gray-100 dark:[&>.gutter.gutter-horizontal]:bg-gray-900 [&>div,&>.gutter.gutter-horizontal]:float-left [&>div,&>.gutter.gutter-horizontal]:h-full"
               onDrag={() => {

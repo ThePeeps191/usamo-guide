@@ -1,13 +1,22 @@
 export const books = {
-  PAPS: [
-    '/PAPS.pdf',
-    'Principles of Algorithmic Problem Solving (Johan Sannemo)',
+  AoPS: [
+    'https://artofproblemsolving.com/store',
+    'Art of Problem Solving Books (AoPS)',
   ],
-  CP2: ['/CP2.pdf', 'Competitive Programming 2 (Steven Halim)'],
-  CPH: ['/CPH.pdf', "Competitive Programmer's Handbook (Antti Laaksonen)"],
-  IUSACO: ['https://darrenyao.com/', 'An Introduction to USACO (Darren Yao)'],
-  GCP: [
-    'https://link.springer.com/book/10.1007/978-3-319-72547-5',
-    'Guide to Competitive Programming (Antti Laaksonen)',
+  AoPSVol1: [
+    'https://artofproblemsolving.com/store/item/aops-vol1',
+    'AoPS Volume 1: The Basics',
+  ],
+  AoPSVol2: [
+    'https://artofproblemsolving.com/store/item/aops-vol2',
+    'AoPS Volume 2',
+  ],
+  EGMO: [
+    'https://www.imo-official.org/publication.aspx?content=ebook',
+    'EGMO (Euclidean Geometry in Mathematical Olympiads)',
+  ],
+  NTZ: [
+    'https://link.springer.com/book/10.1007/978-0-387-69171-2',
+    'Number Theory in the Spirit of Ramanujan (Zuckerman)',
   ],
 };

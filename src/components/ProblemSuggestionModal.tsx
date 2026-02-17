@@ -136,17 +136,8 @@ export default function ProblemSuggestionModal({
       .finally(() => setLoading(false));
   };
   const getLabel = source => {
-    const map = {
-      'Old Bronze': 'Old USACO Bronze (Before Dec 2015)',
-      'Old Silver': 'Old USACO Silver (Before Dec 2015)',
-      'Old Gold': 'Old USACO Gold (Before Dec 2015)',
-      Bronze: 'Recent USACO Bronze (Dec 2015 and Later)',
-      Silver: 'Recent USACO Silver (Dec 2015 and Later)',
-      Gold: 'Recent USACO Gold (Dec 2015 and Later)',
-      Platinum: 'USACO Platinum',
-    };
-    if (map[source]) return map[source];
-    return probSources[source][1];
+    if (probSources[source]) return probSources[source][1];
+    return source;
   };
   const isAdditionalPractice = markdownLayoutInfo?.title.includes(
     'Additional Practice'
@@ -157,12 +148,7 @@ export default function ProblemSuggestionModal({
         label: getLabel(source),
         value: source,
       }))
-      .filter(
-        val =>
-          !isAdditionalPractice ||
-          (!val.label.includes('Recent USACO') &&
-            !val.label.includes('Platinum'))
-      ),
+      .filter(val => !isAdditionalPractice || !val.label.includes('USAMO')),
     {
       label: 'Other',
       value: 'other',
@@ -182,7 +168,7 @@ export default function ProblemSuggestionModal({
               autoFocus
               type="text"
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:border-gray-700 dark:bg-gray-900"
-              placeholder="Ex: Steeplechase (Please do NOT include the source)"
+              placeholder="Ex: Lattice Paths (Please do NOT include the source)"
               value={name}
               disabled={loading}
               onChange={e => setName(e.target.value)}
@@ -192,7 +178,7 @@ export default function ProblemSuggestionModal({
             <input
               type="text"
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:border-gray-700 dark:bg-gray-900"
-              placeholder="Ex: USACO December 2012 Silver - Steeplechase"
+              placeholder="Ex: AMC 10A 2019 #19 - Lattice Paths"
               value={name}
               onChange={e => setName(e.target.value)}
               required
@@ -223,17 +209,8 @@ export default function ProblemSuggestionModal({
         </label>
         {isAdditionalPractice && (
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            We are not accepting recent USACO problems for additional practice
-            modules, as they can already be viewed{' '}
-            <a
-              href="/general/usaco-monthlies"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-600 underline dark:text-blue-300"
-            >
-              here
-            </a>
-            .
+            We prioritize fresh additions and avoid duplicates of common contest
+            sets already covered elsewhere in the guide.
           </p>
         )}
         <div className="relative mt-2 rounded-md shadow-sm">
@@ -270,7 +247,7 @@ export default function ProblemSuggestionModal({
           <input
             type="text"
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm dark:border-gray-700 dark:bg-gray-900"
-            placeholder="DP, Dijkstra"
+            placeholder="Number Theory, Geometry"
             value={tags}
             onChange={e => setTags(e.target.value)}
             disabled={loading}
@@ -351,7 +328,7 @@ export default function ProblemSuggestionModal({
           </h3>
           <div className="dark:text-dark-high-emphasis mt-2 text-sm leading-5 text-green-700">
             <p>
-              Thanks for helping to improve the USACO Guide. You can track the
+              Thanks for helping to improve the USAMO Guide. You can track the
               progress of your suggestion here:{' '}
               <a
                 href={createdIssueLink ?? undefined}
@@ -427,12 +404,12 @@ export default function ProblemSuggestionModal({
                 </p>
               ) : (
                 <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                  Help us improve the USACO Guide by suggesting a problem to
+                  Help us improve the USAMO Guide by suggesting a problem to
                   add!
                   <br />
                   This will be submitted as a public{' '}
                   <a
-                    href="https://github.com/cpinitiative/usaco-guide/pulls"
+                    href="https://github.com/cpinitiative/usamo-guide/pulls"
                     target="_blank"
                     rel="noreferrer"
                     className="text-blue-600 underline dark:text-blue-300"

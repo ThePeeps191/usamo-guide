@@ -117,7 +117,7 @@ export const MainEditorInterface = ({ className }): JSX.Element => {
             schemas: [
               {
                 fileMatch: ['*.json'],
-                uri: 'https://usaco.guide/problems.schema.json',
+                uri: 'https://usamo.guide/problems.schema.json',
                 schema: problemsSchema,
               },
             ],

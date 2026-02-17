@@ -77,7 +77,7 @@ const ProblemAutocompleteModal = ({
                 Problem Search
               </DialogTitle>
               <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                You can search for any problem on the USACO Guide and the
+                You can search for any problem on the USAMO Guide and the
                 problem information will be auto-filled. Furthermore, progress
                 tracking will be linked for students.
               </p>

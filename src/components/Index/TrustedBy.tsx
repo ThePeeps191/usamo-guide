@@ -6,17 +6,17 @@ export default function TrustedBy() {
   const [numPageviews, setNumPageviews] = useState(-1);
   const [numStars, setNumStars] = useState(-1);
   useEffect(() => {
-    fetch('https://usaco-guide.firebaseio.com/pageviews.json')
+    fetch('https://usamo-guide.firebaseio.com/pageviews.json')
       .then(resp => resp.json())
       .then(pageviews => {
         setNumPageviews(parseInt(pageviews));
       });
-    fetch('https://usaco-guide.firebaseio.com/num_users.json')
+    fetch('https://usamo-guide.firebaseio.com/num_users.json')
       .then(resp => resp.json())
       .then(numUsers => {
         setNumUsers(parseInt(numUsers));
       });
-    fetch('https://api.github.com/repos/cpinitiative/usaco-guide')
+    fetch('https://api.github.com/repos/cpinitiative/usamo-guide')
       .then(resp => resp.json())
       .then(data => {
         setNumStars(data.stargazers_count);

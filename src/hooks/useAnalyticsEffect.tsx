@@ -7,7 +7,7 @@ export const useAnalyticsEffect = () => {
     } else {
       // google analytics got blocked
       fetch(
-        'https://usaco-guide.firebaseio.com/analytics/no_ga_pageviews.json',
+        'https://usamo-guide.firebaseio.com/analytics/no_ga_pageviews.json',
         {
           method: 'PUT',
           headers: {
@@ -17,7 +17,7 @@ export const useAnalyticsEffect = () => {
         }
       );
     }
-    fetch('https://usaco-guide.firebaseio.com/pageviews.json', {
+    fetch('https://usamo-guide.firebaseio.com/pageviews.json', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

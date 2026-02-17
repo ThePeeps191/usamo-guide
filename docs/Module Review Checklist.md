@@ -1,7 +1,7 @@
 # Module Review Checklist
 
 Read through the module and check for errors. Also see:
-https://usaco.guide/general/contributing
+docs/Math_Topic_Template.md
 
 Languages Checked:
 

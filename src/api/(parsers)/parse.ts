@@ -3,11 +3,9 @@ import parseAc from './ac';
 import parseCC from './cc';
 import parseCf from './cf';
 import parseCses from './cses';
-import parseUsaco from './usaco';
 
 export const parsers = {
   'codeforces.com': parseCf,
-  'usaco.org': parseUsaco,
   'cses.fi': parseCses,
   'atcoder.jp': parseAc,
   'codechef.com': parseCC,
@@ -116,7 +114,7 @@ async function tryCodeforcesAPI(url: string): Promise<string | null> {
       response = await axios.get(apiUrl, {
         timeout: 10000,
         headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; USACO-Guide/1.0)',
+          'User-Agent': 'Mozilla/5.0 (compatible; USAMO-Guide/1.0)',
         },
       });
 
@@ -142,7 +140,7 @@ async function tryCodeforcesAPI(url: string): Promise<string | null> {
       response = await axios.get(apiUrl, {
         timeout: 10000,
         headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; USACO-Guide/1.0)',
+          'User-Agent': 'Mozilla/5.0 (compatible; USAMO-Guide/1.0)',
         },
       });
 

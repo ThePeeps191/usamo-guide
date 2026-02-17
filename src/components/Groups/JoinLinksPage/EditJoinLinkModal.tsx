@@ -70,7 +70,7 @@ export default function EditJoinLinkModal({
                 <div className="mt-6">
                   <div className="flex items-center rounded-sm bg-gray-50 p-4 dark:bg-gray-800">
                     <span className="flex-1">
-                      https://usaco.guide/groups/join?key={link.id}
+                      https://usamo.guide/groups/join?key={link.id}
                     </span>
 
                     <button
@@ -78,7 +78,7 @@ export default function EditJoinLinkModal({
                       onClick={() => {
                         setCopied(true);
                         navigator.clipboard.writeText(
-                          `https://usaco.guide/groups/join?key=${link.id}`
+                          `https://usamo.guide/groups/join?key=${link.id}`
                         );
                       }}
                       className="focus:outline-hidden"
