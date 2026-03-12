@@ -46,9 +46,8 @@ export default function AdminDashboardPage() {
 
   const isAdmin = roles.includes('admin');
   const isProblemManager = roles.includes('problem_manager');
-  const isGrader = roles.includes('grader');
 
-  if (!isAdmin && !isProblemManager && !isGrader) {
+  if (!isAdmin && !isProblemManager) {
     return (
       <Layout>
         <TopNavigationBar />
@@ -71,12 +70,8 @@ export default function AdminDashboardPage() {
         <div className="ui-card mx-auto max-w-3xl p-8">
           <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
           <div className="mt-8 space-y-3">
-            {isAdmin ? <Link to="/admin/contests" className="ui-link block">Contest management</Link> : null}
             {isAdmin || isProblemManager ? (
               <Link to="/admin/problems" className="ui-link block">Problem manager</Link>
-            ) : null}
-            {isAdmin || isGrader ? (
-              <Link to="/admin/grades" className="ui-link block">Grading dashboard</Link>
             ) : null}
           </div>
         </div>

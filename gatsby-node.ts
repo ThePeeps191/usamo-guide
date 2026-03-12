@@ -545,3 +545,60 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders, plugins }) => {
     });
   }
 };
+
+exports.onPostBuild = async ({ graphql, reporter }) => {
+  const result = await graphql(`
+    query SitemapQuery {
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
+      allSitePage {
+        nodes {
+          path
+        }
+      }
+    }
+  `);
+
+  if (result.errors) {
+    reporter.panicOnBuild('Failed to generate sitemap.');
+    return;
+  }
+
+  const envSiteUrl =
+    process.env.SITE_URL ||
+    (process.env.VERCEL_BRANCH_URL
+      ? `https://${process.env.VERCEL_BRANCH_URL}`
+      : '') ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '') ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : '') ||
+    'http://localhost:8000';
+  const baseUrl = envSiteUrl || result.data?.site?.siteMetadata?.siteUrl;
+
+  const rawPaths = (result.data?.allSitePage?.nodes || [])
+    .map(node => node?.path)
+    .filter(Boolean);
+  const filteredPaths = rawPaths.filter(
+    path => !path.startsWith('/api/') && path !== '/dev-404-page/'
+  );
+  const uniquePaths = Array.from(new Set(filteredPaths));
+  const urls = uniquePaths.length ? uniquePaths : ['/'];
+
+  const xmlLines = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...urls.map(path => `  <url><loc>${baseUrl}${path}</loc></url>`),
+    '</urlset>',
+  ];
+
+  const publicDir = path.join(process.cwd(), 'public');
+  if (!fs.existsSync(publicDir)) {
+    fs.mkdirSync(publicDir, { recursive: true });
+  }
+  fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), xmlLines.join('\n'));
+  reporter.info(`Sitemap written to ${path.join(publicDir, 'sitemap.xml')}`);
+};

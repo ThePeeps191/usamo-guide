@@ -32,7 +32,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url('/images/math-doodles.png');
+    background-image: var(--ui-page-bg-image, none);
     background-repeat: repeat;
     background-position: center;
     opacity: 0.1;

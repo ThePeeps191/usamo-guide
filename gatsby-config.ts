@@ -15,8 +15,14 @@ const flags = {
 
 const siteUrl =
   process.env.SITE_URL ||
+  (process.env.VERCEL_BRANCH_URL
+    ? `https://${process.env.VERCEL_BRANCH_URL}`
+    : null) ||
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
-  `https://usamo.guide/`;
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : null) ||
+  `http://localhost:8000`;
 
 const siteMetadata = {
   title: `USAMO Guide`,
@@ -27,40 +33,6 @@ const siteMetadata = {
 };
 
 const plugins = [
-  {
-    resolve: 'gatsby-plugin-sitemap',
-    options: {
-      excludes: ['/license/', '/editor/'],
-      resolveSiteUrl: () => siteUrl,
-      query: `
-        {
-          site {
-            siteMetadata {
-              siteUrl
-            }
-          }
-          allSitePage(filter: { path: { ne: "" } }) {
-            nodes {
-              path
-            }
-          }
-        }
-      `,
-      serialize: ({
-        site = { siteMetadata: { siteUrl: siteUrl || 'https://usamo.guide' } },
-        allSitePage = { nodes: [{ path: '/' }] },
-      }) => {
-        const baseUrl =
-          site.siteMetadata?.siteUrl || siteUrl || 'https://usamo.guide';
-        const pages = allSitePage.nodes?.length
-          ? allSitePage.nodes
-          : [{ path: '/' }];
-        return pages.map(node => ({
-          url: `${baseUrl}${node.path}`,
-        }));
-      },
-    },
-  },
   {
     resolve: `gatsby-plugin-typescript`,
     options: {

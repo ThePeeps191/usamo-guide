@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LaTeXEditor from '../contest/LaTeXEditor';
+import LaTeXEditor from '../LaTeXEditor';
 import { apiFetch } from '../../lib/api/client';
 
 export default function ProblemManagerForm() {

@@ -21,7 +21,8 @@ const Layout = ({
       <div className="relative min-h-screen font-sans">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0 bg-[url('/images/math-doodles.png')] bg-repeat bg-center opacity-5"
+          className="pointer-events-none absolute inset-0 z-0 bg-repeat bg-center opacity-5"
+          style={{ backgroundImage: "url(/images/math-doodles.png)" }}
         />
         <div className="relative z-10">{children}</div>
       </div>

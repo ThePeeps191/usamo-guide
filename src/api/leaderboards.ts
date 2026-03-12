@@ -13,26 +13,6 @@ export default async function handler(
   const supabase = getSupabaseAdmin();
   const type = (request.query.type as string) ?? 'global';
 
-  if (type === 'contest') {
-    const contestId = request.query.contestId as string | undefined;
-    if (!contestId) {
-      response.status(400).json({ error: 'Missing contestId' });
-      return;
-    }
-    const { data, error } = await supabase
-      .from('leaderboards')
-      .select('user_id,total_score,rank,last_accepted_at')
-      .eq('contest_id', contestId)
-      .order('rank', { ascending: true });
-
-    if (error) {
-      response.status(500).json({ error: error.message });
-      return;
-    }
-    response.json({ leaderboard: data });
-    return;
-  }
-
   if (type === 'level') {
     const levelId = request.query.levelId as string | undefined;
     if (!levelId) {
