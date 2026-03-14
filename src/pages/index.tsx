@@ -129,6 +129,36 @@ export default function IndexPage({ path }): JSX.Element {
           <div className="flex text-gray-600 md:justify-center md:text-xl dark:text-gray-400">
               <span>Built by the USAMO Guide community</span>
           </div>
+          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-base text-gray-600 md:justify-center md:text-lg dark:text-gray-400">
+            <a
+              href="https://github.com/usamoguide/usamo-guide"
+              target="_blank"
+              rel="noreferrer"
+              className={classNames(linkTextStyles, 'inline-flex items-center gap-2')}
+            >
+              <img
+                src="/images/GitHub_Invertocat_White.png"
+                alt=""
+                aria-hidden="true"
+                className="h-5 w-5"
+              />
+              <span>Check out our GitHub</span>
+            </a>
+            <a
+              href="https://discord.gg/PMyJgWjAz9"
+              target="_blank"
+              rel="noreferrer"
+              className={classNames(linkTextStyles, 'inline-flex items-center gap-2')}
+            >
+              <img
+                src="/images/Discord-Symbol-White.png"
+                alt=""
+                aria-hidden="true"
+                className="h-5 w-auto"
+              />
+              <span>Join our Discord server</span>
+            </a>
+          </div>
           <div className="h-4 sm:h-6 md:h-16"></div>
         </div>
       </div>

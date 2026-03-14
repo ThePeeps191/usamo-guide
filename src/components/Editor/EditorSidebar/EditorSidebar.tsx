@@ -195,7 +195,7 @@ function GithubActions() {
               {branch && githubInfo && (
                 <a
                   className="btn mt-4"
-                  href={`https://github.com/usamoguide/usamo-guide/compare/main...${githubInfo.login}:${branch}?expand=1`}
+                  href={`https://github.com/usamoguide/usamo-guide/compare?expand=1&base=main&head=${githubInfo.login}:${branch}`}
                   target="_blank"
                   rel="noreferrer"
                 >

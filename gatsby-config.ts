@@ -94,7 +94,7 @@ const plugins = [
       background_color: `#0f172a`,
       theme_color: `#0f172a`,
       display: `minimal-ui`,
-      icon: `src/assets/usamo-logo.svg`, // This path is relative to the root of the site.
+      icon: `static/images/cropped_circle_image.png`, // This path is relative to the root of the site.
     },
   },
   {
