@@ -8,7 +8,6 @@ import {
   getProblemInfo,
   getProblemURL,
   ProblemMetadata,
-  ShortProblemInfo,
 } from './src/models/problem';
 
 const SECTION_FROM_CONTENT_DIR = {
@@ -379,15 +378,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
   // Check to make sure problems with the same unique ID have consistent information, and that there aren't duplicate slugs
-  // Also creates user solution pages for each problem
   const problems = result.data.problems.edges;
   let problemSlugs = {}; // maps slug to problem unique ID
   let problemInfo = {}; // maps unique problem ID to problem info
   let problemURLToUniqueID = {}; // maps problem URL to problem unique ID
   let urlsThatCanHaveMultipleUniqueIDs: string[] = [];
-  const userSolutionTemplate = path.resolve(
-    `./src/templates/userSolutionTemplate.tsx`
-  );
   problems.forEach(({ node }) => {
     let slug = getProblemURL(node);
     if (
@@ -435,16 +430,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     problemSlugs[slug] = node.uniqueId;
     problemInfo[node.uniqueId] = node;
     problemURLToUniqueID[node.url] = node.uniqueId;
-    const path = `/problems/${node.uniqueId}/user-solutions`;
-    const problem = node as ShortProblemInfo;
-    createPage({
-      path: path,
-      component: userSolutionTemplate,
-      context: {
-        problem: problem,
-        id: problem.uniqueId,
-      },
-    });
   });
   // End problems check
   const moduleTemplate = path.resolve(`./src/templates/moduleTemplate.tsx`);

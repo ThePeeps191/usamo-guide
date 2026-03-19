@@ -316,13 +316,3 @@ export type ProblemFeedback = {
   isCodePublic: boolean;
   otherFeedback: string;
 };
-
-/* Condensed version of ProblemInfo only used for user solution page generation
- gatsby-node's problem query doesn't retrieve all the attributes of ProblemInfo,
- these are just the attributes required for the user solutions pages that it does retrieve
-*/
-export type ShortProblemInfo = {
-  uniqueId: string;
-  name: string;
-  url: string;
-};

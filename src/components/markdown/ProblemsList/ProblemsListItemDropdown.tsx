@@ -2,57 +2,10 @@ import Tippy from '@tippyjs/react';
 import React from 'react';
 import { Instance } from 'tippy.js';
 import { useDarkMode } from '../../../context/DarkModeContext';
-import useUserSolutionsForProblem from '../../../hooks/useUserSolutionsForProblem';
 import { getProblemURL, ProblemInfo } from '../../../models/problem';
-import TextTooltip from '../../Tooltip/TextTooltip';
 import { DivisionProblemInfo } from './DivisionList/DivisionProblemInfo';
 import ProblemListItemSolution from './ProblemListItemSolution';
 import { ProblemsListItemProps } from './ProblemsListItem';
-
-function ViewSolutionsContent({
-  problem,
-}: {
-  problem: ProblemInfo | DivisionProblemInfo;
-}): JSX.Element {
-  const { solutions, currentUserSolutions } =
-    useUserSolutionsForProblem(problem);
-  let viewSolutionsContent = (
-    <>View User Solutions ({solutions?.length ?? '...'})</>
-  );
-  if (currentUserSolutions?.length) {
-    viewSolutionsContent = (
-      <>
-        <TextTooltip
-          position="bottom"
-          content={"You've submitted a solution to this problem."}
-        >
-          {viewSolutionsContent}
-        </TextTooltip>
-        <svg
-          className="ml-1 inline-block h-5 w-5 text-green-400"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </>
-    );
-  }
-  return (
-    <a
-      className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-hidden dark:text-gray-300 dark:hover:bg-gray-800"
-      href={`/problems/${problem.uniqueId}/user-solutions`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      {viewSolutionsContent}
-    </a>
-  );
-}
 
 export default function ProblemsListItemDropdown(
   props: ProblemsListItemProps & { isFocusProblem: boolean }
@@ -121,7 +74,14 @@ export default function ProblemsListItemDropdown(
         isDropdownShown ? (
           <div className="-mx-2 text-left">
             {solutionContent}
-            <ViewSolutionsContent problem={problem} />
+            <a
+              className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-hidden dark:text-gray-300 dark:hover:bg-gray-800"
+              href="https://artofproblemsolving.com/community"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Discuss on AoPS
+            </a>
             <button
               type="button"
               className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-hidden dark:text-gray-300 dark:hover:bg-gray-800"

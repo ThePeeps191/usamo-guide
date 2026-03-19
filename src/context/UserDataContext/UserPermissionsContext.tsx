@@ -16,7 +16,7 @@ export const UserPermissionInformation: {
   canModerate: {
     label: 'Can Moderate',
     description:
-      'Users with this permission can delete or mark user solutions as private.',
+      'Users with this permission have elevated moderation capabilities.',
   },
   canCreateGroups: {
     label: 'Can Create Groups',

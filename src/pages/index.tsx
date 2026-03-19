@@ -295,7 +295,7 @@ export default function IndexPage({ path }): JSX.Element {
                 feature={
                   <div className="rounded-lg shadow-lg">
                     <StaticImage
-                      src="../assets/nontrivial.png"
+                      src="../assets/aops_banner.png"
                       alt="AoPS Community Screenshot"
                       placeholder="blurred"
                       layout="constrained"
