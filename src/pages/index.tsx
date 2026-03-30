@@ -127,7 +127,7 @@ export default function IndexPage({ path }): JSX.Element {
 
         <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_95%_80%_at_50%_38%,rgba(0,0,0,0.28)_0%,rgba(0,0,0,0.12)_40%,rgba(0,0,0,0.05)_58%,transparent_80%)] dark:bg-[radial-gradient(ellipse_95%_80%_at_50%_38%,rgba(0,0,0,0.48)_0%,rgba(0,0,0,0.24)_40%,rgba(0,0,0,0.1)_58%,transparent_80%)]" />
         <div className="pointer-events-none absolute top-1/2 left-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle_at_center,rgba(251,146,60,0.05)_0%,transparent_68%)]" />
-        <div className="absolute bottom-[20%] right-[-5%] w-[30%] h-[30%] bg-purple-500/10 blur-[100px] rounded-full" />
+        <div className="absolute bottom-[20%] right-[-5%] w-[30%] h-[30%] bg-orange-500/10 blur-[100px] rounded-full" />
       
         <div className="absolute inset-x-0 bottom-0 h-64 bg-linear-to-t from-[#160f08] to-transparent" />
 

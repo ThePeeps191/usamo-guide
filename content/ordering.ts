@@ -17,7 +17,11 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
     {
       name: 'Number Theory Basics',
       description: 'Fluency with arithmetic and foundational number theory.',
-      items: ['arithmetic-nt-basics', 'linear-diophantine-equations'],
+      items: [
+        'arithmetic-nt-basics', 
+        'linear-diophantine-equations',
+        'chicken-mcnugget'
+      ],
     },
     {
       name: 'Algebra Basics',
@@ -42,7 +46,7 @@ const MODULE_ORDERING: { [key in SectionID]: Chapter[] } = {
         'symmetric-polynomials',
         'polynomial-manipulations',
         'symmetric-identity',
-        'vieta-jumping',
+        'vieta-root-jumping',
         'functional-equations',
       ],
     },
