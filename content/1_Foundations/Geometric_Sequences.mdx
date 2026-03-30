@@ -1,36 +1,66 @@
 ---
 id: geometric-sequences
 title: Geometric Sequences
-author: USAMO Guide Team
+author: USAMO Guide Team - Wonwoo
 description: Constant ratios, finite sums, and convergence.
-prerequisites: []
+prerequisites: [vieta-formulas, algebra-basics]
 ---
 
 ## Overview
 
-Geometric sequences multiply by a constant ratio. They are the backbone of
-exponential growth and infinite series.
+Geometric sequences multiply by a constant ratio. These are the foundations of exponential growth and infinite series, shown in many AMC Problems.
 
 ## Key Ideas
 
 - $g_n = g_1 r^{n-1}$.
-- $S_n = g_1 \frac{1-r^n}{1-r}$ for $r \ne 1$.
+- For finite sums, $S_n = g_1(1-r^n)/(1-r)$. For infinite sums, one must find that $|r| < 1$.
 - Infinite sums converge only when $|r| < 1$.
 
-## Core Skills
-
-### Find the Ratio
-
-Compute $r=g_{n+1}/g_n$ from consecutive terms. Confirm it is constant.
-
-### Use Finite vs. Infinite Sums
-
-Apply $S_n$ only for finite sums. Use $S_\infty = g_1/(1-r)$ only when
-$|r|<1$.
-
-### Rewrite with Powers
-
-Convert repeated multiplication into exponent form before simplifying.
+## The General Term
+ 
+For a geometric sequence with first term $g_1$ and common ratio $r$, 
+ 
+$$g_n = g_1 \cdot r^{n-1}.$$
+ 
+The ratio is always $r = g_{k+1}/g_k$ for any consecutive pair.
+ 
+For non-consecutive terms $g_m$ and $g_n$, 
+ 
+$$r^{n-m} = \frac{g_n}{g_m} \implies r = \left(\frac{g_n}{g_m}\right)^{\!\frac{1}{n-m}}.$$
+ 
+### The Finite Sum 
+ 
+$$S_n = g_1 \cdot \frac{1-r^n}{1-r}, \quad r \ne 1.$$
+ 
+When $r = 1$: $S_n = n \cdot g_1$. We can derive this by multiplying the sum by $r$, and subtracting.
+Most terms cancel out, and we obtain $S(1-r) = g_1(1-r^n)$.
+ 
+### The Infinite Sum 
+ 
+When $|r| < 1$ the terms shrink to zero and the series converges:
+ 
+$$S_\infty = \frac{g_1}{1-r}, \quad |r| < 1.$$
+ 
+When $|r| \geq 1$ the series diverges, and thus cannot apply this formula. 
+ 
+### Geometric Mean
+ 
+Three numbers $a, b, c$ are in geometric progression if and only if $b^2 = ac$. The number $b$ is the geometric mean of $a$ and $c$.
+ 
+Hence for positive numbers, the geometric mean of $a$ and $c$ is $\sqrt{ac}$.
+ 
+### Symmetric Substitution
+ 
+For problems giving the sum and product of three terms in GP, we write them as $a/r,\ a,\ ar$.
+ 
+| Quantity | Result |
+|----------|--------|
+| Product | $a^3$ |
+| Sum | $a(1/r + 1 + r)$ |
+| Sum of squares | $a^2(1/r^2 + 1 + r^2)$ |
+ 
+The product is shown through $a^3$, so $a$ can be found. Thus, we know that the sum gives a quadratic in $r$. 
+ 
 
 ## Worked Example
 
@@ -41,35 +71,44 @@ $S_\infty = \frac{1}{1-\frac{1}{3}} = \frac{3}{2}$.
 
 ## More Examples
 
-### Example 1: Term Formula
+### Example 1: Using the Term Formula, Basic
 
 If $g_1=6$ and $r=2$, find $g_5$.
 
 $g_5 = 6\cdot 2^4 = 96$.
 
-### Example 2: Finite Sum
+### Example 2: Finite Sum Equation, (Must memorize for Foundational Skill)
 
 Find the sum of the first 6 terms of $3,6,12,\ldots$.
 
 $S_6 = 3\cdot (1-2^6)/(1-2) = 3(63) = 189$.
 
-### Example 3: Convergence Check
+### Example 3: Using Convergence 
 
 Does $5 - 2.5 + 1.25 - \cdots$ converge? If so, find the sum.
 
 $r=-1/2$ so $|r|<1$ and $S_\infty = 5/(1+1/2)=10/3$.
 
+### Example 4: Using Geometric Roots and applying to Vieta's Formulas
+ 
+The roots of $x^3 - 14x^2 + 56x - 64 = 0$ are in GP, find these roots.
+ 
+Let roots be $a/r,\ a,\ ar$. By Vieta's formulas, we know that the product: $a^3 = 64 \implies a = 4$, and 
+the sum is equivlent to $4(1/r + 1 + r) = 14 \implies r + 1/r = 5/2
+\implies 2r^2 - 5r + 2 = 0 \implies r = 2$ or $r = 1/2$.
+Roots: $\mathbf{2, 4, 8}$
+
 ## Strategy Checklist
 
-- Compute the ratio from consecutive terms.
-- Decide whether the sum is finite or infinite.
+- Compute the ratio from consecutive terms for accuracy. 
+- Decide whether the sum is finite or infinite at first.
 - Check $|r|<1$ before using the infinite formula.
-- Keep powers as $r^{n-1}$ to avoid off-by-one errors.
+- Keep powers as $r^{n-1}$, for convinience and less error (Highly recommended in more complex problems) 
 
 ## Common Pitfalls
 
-- Applying the infinite sum formula when $|r| \ge 1$.
-- Mixing up $r^n$ vs. $r^{n-1}$ in the term formula.
+- A common mistake is applying the infinite sum formula when $|r| \ge 1$.
+- Mixing up $r^n$ vs. $r^{n-1}$ in the term formula can lead to error. 
 - Using $r$ from non-consecutive terms without checking consistency.
 
 ## Practice Problems
