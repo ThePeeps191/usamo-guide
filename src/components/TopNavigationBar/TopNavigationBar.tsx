@@ -48,6 +48,12 @@ export default function TopNavigationBar({
 
   const resources = [
     {
+      name: 'Other Useful Resources',
+      description: 'Topic-by-topic external resources curated by USAMO Guide.',
+      href: '/other-useful-resources',
+      icon: PresentationChartLineIcon,
+    },
+    {
       name: 'AoPS Community',
       description: 'Math contest discussions and Q&A on Art of Problem Solving.',
       href: 'https://artofproblemsolving.com/community',
@@ -75,20 +81,8 @@ export default function TopNavigationBar({
     {
       name: 'Past AMC/AIME',
       description: 'Official problem archives and scoring details.',
-      href: 'https://maa.org/math-competitions/amc-8',
+      href: 'https://artofproblemsolving.com/wiki/index.php/AMC_Problems_and_Solutions',
       icon: ChartBarIcon,
-    },
-    {
-      name: 'Study Groups',
-      description: 'Collaborate with peers using the USAMO Guide LMS.',
-      href: '/groups',
-      icon: UserGroupIcon,
-    },
-    {
-      name: 'Workshops',
-      description: 'Workshops on proof techniques and contest strategies.',
-      href: '/groups',
-      icon: PresentationChartLineIcon,
     },
   ];
 
@@ -191,33 +185,57 @@ export default function TopNavigationBar({
                   >
                     <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5">
                       <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2 dark:bg-[#0D0D0D]">
-                        {resources.map(item => (
-                          <a
-                            key={item.name}
-                            href={item.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="-m-3 flex items-start rounded-lg p-3 transition duration-150 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-700"
-                          >
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
-                              <item.icon
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
-                            </div>
-                            <div className="ml-4">
-                              <div className="dark:text-dark-high-emphasis flex text-base font-medium text-gray-900">
-                                {item.name}{' '}
-                                <span className="mt-0.5 ml-2 h-5 w-5 text-gray-400">
-                                  <ExternalLinkIcon />
-                                </span>
+                        {resources.map(item => {
+                          const isInternal = item.href.startsWith('/');
+
+                          const body = (
+                            <>
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
+                                <item.icon
+                                  className="h-6 w-6"
+                                  aria-hidden="true"
+                                />
                               </div>
-                              <p className="dark:text-dark-med-emphasis mt-1 text-sm text-gray-500">
-                                {item.description}
-                              </p>
-                            </div>
-                          </a>
-                        ))}
+                              <div className="ml-4">
+                                <div className="dark:text-dark-high-emphasis flex text-base font-medium text-gray-900">
+                                  {item.name}
+                                  {!isInternal && (
+                                    <span className="mt-0.5 ml-2 h-5 w-5 text-gray-400">
+                                      <ExternalLinkIcon />
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="dark:text-dark-med-emphasis mt-1 text-sm text-gray-500">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </>
+                          );
+
+                          if (isInternal) {
+                            return (
+                              <Link
+                                key={item.name}
+                                to={item.href}
+                                className="-m-3 flex items-start rounded-lg p-3 transition duration-150 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-700"
+                              >
+                                {body}
+                              </Link>
+                            );
+                          }
+
+                          return (
+                            <a
+                              key={item.name}
+                              href={item.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="-m-3 flex items-start rounded-lg p-3 transition duration-150 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-700"
+                            >
+                              {body}
+                            </a>
+                          );
+                        })}
                       </div>
                     </div>
                   </PopoverPanel>

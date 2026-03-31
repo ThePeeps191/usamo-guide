@@ -1,0 +1,310 @@
+import {
+  AcademicCapIcon,
+  ChartBarIcon,
+  ClipboardListIcon,
+  LightBulbIcon,
+  TerminalIcon,
+} from '@heroicons/react/outline';
+import { PageProps } from 'gatsby';
+import * as React from 'react';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
+import TopNavigationBar from '../components/TopNavigationBar/TopNavigationBar';
+
+type ResourceLink = {
+  name: string;
+  href: string;
+  description: string;
+  imageSrc?: string;
+  imageAlt?: string;
+};
+
+type TopicResources = {
+  topic: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  intro: string;
+  imageSrc: string;
+  imageAlt: string;
+  links: ResourceLink[];
+};
+
+const RESOURCES: TopicResources[] = [
+  {
+    topic: 'Combinatorics',
+    icon: ClipboardListIcon,
+    intro:
+      'Counting, casework, generating functions, and olympiad combinatorics training.',
+    imageSrc:
+      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1280&q=80',
+    imageAlt: 'Mathematical symbols and combinatorics notes on a chalkboard.',
+    links: [
+      {
+        name: 'AoPS Intermediate Counting Course',
+        href: 'https://artofproblemsolving.com/school/course/intermediatecounting',
+        description:
+          'Structured lessons and practice for permutations, combinations, and bijections.',
+      },
+      {
+        name: 'Yufei Zhao - Enumerative Combinatorics Notes',
+        href: 'https://yufeizhao.com/olympiad/',
+        description:
+          'High-quality olympiad notes with clear combinatorial arguments and examples.',
+      },
+      {
+        name: 'Brilliant - Combinatorics Wiki',
+        href: 'https://brilliant.org/wiki/combinatorics/',
+        description:
+          'Quick refreshers and concept overviews for counting fundamentals and beyond.',
+      },
+    ],
+  },
+  {
+    topic: 'Algebra and Functional Equations',
+    icon: LightBulbIcon,
+    intro:
+      'Polynomials, identities, inequalities, and functional equation techniques.',
+    imageSrc:
+      'https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1280&q=80',
+    imageAlt: 'Notebook page with equations and algebraic expressions.',
+    links: [
+      {
+        name: 'AoPS Intermediate Algebra Course',
+        href: 'https://artofproblemsolving.com/school/course/intermediatealgebra',
+        description:
+          'Strong foundation for transformations, equations, and contest-level manipulations.',
+      },
+      {
+        name: 'Cut-the-Knot Algebra Collection',
+        href: 'https://www.cut-the-knot.org/algebra.shtml',
+        description:
+          'A deep archive of algebra techniques, identities, and problem discussions.',
+      },
+      {
+        name: 'IMOmath - Functional Equations',
+        href: 'https://imomath.com/index.cgi?page=problemsFunctionalEquations',
+        description:
+          'Olympiad-style functional equation problems sorted for focused practice.',
+      },
+    ],
+  },
+  {
+    topic: 'Geometry',
+    icon: AcademicCapIcon,
+    intro:
+      'Synthetic geometry, coordinate methods, and olympiad geometry problem solving.',
+    imageSrc:
+      'https://images.unsplash.com/photo-1509869175650-a1d97972541a?auto=format&fit=crop&w=1280&q=80',
+    imageAlt: 'Compass and geometric sketches on paper.',
+    links: [
+      {
+        name: 'Evan Chen - Euclidean Geometry in Mathematical Olympiads',
+        href: 'https://web.evanchen.cc/geombook.html',
+        description:
+          'One of the best references for olympiad geometry with modern techniques.',
+      },
+      {
+        name: 'AoPS Intro/Intermediate Geometry',
+        href: 'https://artofproblemsolving.com/school/course/introductiongeometry',
+        description:
+          'Progressive geometry curriculum from foundational theorems to hard problems.',
+      },
+      {
+        name: 'Geometry Revisited (Coxeter-Greitzer)',
+        href: 'https://archive.org/details/geometryrevisite0000coxe',
+        description:
+          'Classic book that builds geometric intuition and proof-writing habits.',
+      },
+    ],
+  },
+  {
+    topic: 'Number Theory',
+    icon: TerminalIcon,
+    intro:
+      'Divisibility, modular arithmetic, diophantine equations, and prime techniques.',
+    imageSrc:
+      'https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?auto=format&fit=crop&w=1280&q=80',
+    imageAlt: 'Page of handwritten equations related to number patterns.',
+    links: [
+      {
+        name: 'AoPS Number Theory Course',
+        href: 'https://artofproblemsolving.com/school/course/numbertheory',
+        description:
+          'A systematic path through foundational and advanced contest number theory.',
+      },
+      {
+        name: 'Paul Zeitz - Number Theory Handouts',
+        href: 'https://web.evanchen.cc/handouts/ZeitzNT/ZeitzNT.pdf',
+        description:
+          'Excellent olympiad-focused problems and classic methods in one place.',
+      },
+      {
+        name: 'Brilliant - Number Theory Wiki',
+        href: 'https://brilliant.org/wiki/number-theory/',
+        description:
+          'Useful concept summaries for quick recall and revision.',
+      },
+    ],
+  },
+  {
+    topic: 'General Olympiad Training',
+    icon: ChartBarIcon,
+    intro:
+      'Past papers, solution archives, strategy references, and broad practice sources.',
+    imageSrc:
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1280&q=80',
+    imageAlt: 'Desk setup with planning sheets and study materials.',
+    links: [
+      {
+        name: 'AoPS Wiki - AMC/AIME/USAMO Archives',
+        href: 'https://artofproblemsolving.com/wiki/index.php/AMC_Problems_and_Solutions',
+        description:
+          'Official statements, community solutions, and historical contest collections.',
+      },
+      {
+        name: 'MAA Competitions',
+        href: 'https://www.maa.org/math-competitions',
+        description:
+          'Contest logistics, dates, and official pages for US competition programs.',
+      },
+      {
+        name: 'IMO Official Site - Problem Archive',
+        href: 'https://www.imo-official.org/problems.aspx',
+        description:
+          'International Olympiad problems for stretching proof and strategy skills.',
+      },
+    ],
+  },
+];
+
+function ResourceCard({
+  topic,
+  link,
+  fallbackImageSrc,
+  fallbackImageAlt,
+  reverse,
+}: {
+  topic: string;
+  link: ResourceLink;
+  fallbackImageSrc: string;
+  fallbackImageAlt: string;
+  reverse: boolean;
+}) {
+  const imageSrc = link.imageSrc ?? fallbackImageSrc;
+  const imageAlt = link.imageAlt ?? fallbackImageAlt;
+
+  return (
+    <article className="overflow-hidden rounded-2xl border border-orange-200/60 bg-white/85 shadow-sm backdrop-blur-sm dark:border-orange-900/70 dark:bg-gray-900/60">
+      <div
+        className={`grid items-stretch lg:grid-cols-2 ${reverse ? 'lg:[&>*:first-child]:order-2' : ''}`}
+      >
+        <div className="relative min-h-[220px] lg:min-h-[320px]">
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/45 via-black/15 to-transparent" />
+          <div className="absolute right-3 bottom-3 rounded-md bg-black/55 px-2.5 py-1 text-xs font-medium tracking-wide text-orange-100 uppercase">
+            {topic}
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-center px-5 py-6 sm:px-7">
+          <h3 className="text-2xl font-black tracking-tight text-gray-900 dark:text-gray-100">
+            {link.name}
+          </h3>
+          <p className="mt-3 text-sm leading-6 text-gray-700 dark:text-gray-300 sm:text-base">
+            {link.description}
+          </p>
+          <div className="mt-6">
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center rounded-full border border-orange-300 bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-900 transition hover:bg-orange-100 dark:border-orange-800 dark:bg-orange-950/40 dark:text-orange-200 dark:hover:bg-orange-900/50"
+            >
+              Visit resource {'->'}
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function TopicSection({
+  topic,
+  icon: Icon,
+  intro,
+  imageSrc,
+  imageAlt,
+  links,
+}: TopicResources) {
+  return (
+    <section className="rounded-3xl border border-orange-300/70 bg-orange-50/60 p-4 shadow-sm dark:border-orange-900/70 dark:bg-orange-950/15 sm:p-5 lg:p-6">
+      <div className="mb-5 rounded-2xl border border-orange-200/70 bg-white/90 px-5 py-5 dark:border-orange-900/70 dark:bg-gray-900/70 sm:px-6">
+        <div className="flex items-start gap-3">
+          <div className="rounded-lg bg-orange-100 p-2 text-orange-700 dark:bg-orange-900/50 dark:text-orange-200">
+            <Icon className="h-5 w-5" aria-hidden="true" />
+          </div>
+          <div>
+            <h2 className="text-4xl font-black tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
+              {topic}
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-gray-700 dark:text-gray-300 sm:text-base">
+              {intro}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-5">
+        {links.map((link, index) => (
+          <ResourceCard
+            key={link.name}
+            topic={topic}
+            link={link}
+            fallbackImageSrc={imageSrc}
+            fallbackImageAlt={imageAlt}
+            reverse={index % 2 === 1}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default function OtherUsefulResourcesPage(props: PageProps) {
+  return (
+    <Layout>
+      <SEO title="Other Useful Resources" pathname={props.path} />
+
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 via-orange-50 to-blue-50 text-gray-900 dark:from-[#1b120a] dark:via-[#0a192f] dark:to-[#0d1321] dark:text-gray-100">
+        <TopNavigationBar linkLogoToIndex={true} redirectToDashboard={false} />
+
+        <main className="mx-auto max-w-screen-2xl px-4 py-10 sm:px-6 lg:px-8">
+          <header className="rounded-2xl border border-orange-200/70 bg-white/90 px-6 py-14 text-center shadow-xs backdrop-blur-sm dark:border-orange-900 dark:bg-gray-900/70 sm:px-10 sm:py-20">
+            <p className="text-sm font-semibold tracking-wide text-orange-700 uppercase dark:text-orange-300">
+              Community-curated links
+            </p>
+            <h1 className="mt-4 text-5xl font-black tracking-tight sm:text-6xl lg:text-7xl">
+              Other Useful Resources
+            </h1>
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-gray-700 dark:text-gray-300 sm:text-lg">
+              This page collects strong external resources for specific contest
+              math topics. Use it as a companion to USAMO Guide when you want
+              extra explanations, alternate problem sets, or deeper dives.
+            </p>
+          </header>
+
+          <div className="mt-8 space-y-8">
+            {RESOURCES.map(topic => (
+              <TopicSection key={topic.topic} {...topic} />
+            ))}
+          </div>
+        </main>
+      </div>
+    </Layout>
+  );
+}

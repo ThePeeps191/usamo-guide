@@ -77,10 +77,7 @@ export default function Template(props): JSX.Element {
       </Helmet>
 
       <div className="relative overflow-hidden bg-gradient-to-b from-orange-50 via-amber-50 to-white dark:from-[#140f0a] dark:via-[#1a1004] dark:to-[#0f172a]">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.18] [mask-image:radial-gradient(ellipse_at_center,white_20%,transparent_75%)]"
-          style={{ backgroundImage: "url('/images/math-doodles.png')" }}
-        />
+
         <div className="pointer-events-none absolute inset-0">
           <svg className="h-full w-full opacity-[0.12] dark:opacity-[0.2]" xmlns="http://www.w3.org/2000/svg">
             <defs>

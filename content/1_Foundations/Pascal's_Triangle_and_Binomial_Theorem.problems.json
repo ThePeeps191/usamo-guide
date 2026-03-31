@@ -45,7 +45,7 @@
         "Binomial Theorem",
         "Coefficient Extraction"
       ],
-      "statement": "What is the number of terms with rational coefficients among the $1001$ terms in the expansion of $\left(x\sqrt[3]{2}+y\sqrt{3}\right)^{1000}?$",
+      "statement": "What is the number of terms with rational coefficients among the $1001$ terms in the expansion of $\\left(x\\sqrt[3]{2}+y\\sqrt{3}\right)^{1000}?$",
       "solutionMetadata": {
         "kind": "none"
       }
