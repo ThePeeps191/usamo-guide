@@ -13,16 +13,14 @@ const flags = {
   DEV_SSR: false,
 };
 
-const siteUrl =
+const siteUrl = (
   process.env.SITE_URL ||
-  (process.env.VERCEL_BRANCH_URL
-    ? `https://${process.env.VERCEL_BRANCH_URL}`
-    : null) ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
+  process.env.GATSBY_SITE_URL ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : null) ||
-  `http://localhost:8000`;
+  'https://www.usamoguide.com'
+).replace(/\/$/, '');
 
 const siteMetadata = {
   title: `USAMO Guide`,
